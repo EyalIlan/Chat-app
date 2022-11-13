@@ -1,11 +1,11 @@
 
 export interface UserIF{
 
-    name:String
+    name:string
     
     email:String
 
-    age:Number
+    age:number
 
     avatar:Buffer | null
 

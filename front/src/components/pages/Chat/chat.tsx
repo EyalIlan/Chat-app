@@ -1,7 +1,7 @@
 import Axios from '../../../util/Axios/axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
-import {  Token } from '../../../util/store/reducers/user';
+import {  Token,UserData } from '../../../util/store/reducers/user';
 // import { UserIF } from '../../../util/interface/interface'
 import './chat.css'
 
@@ -26,7 +26,7 @@ const Chat: React.FC<Props> = ({socket}) => {
   const [rooms, Setrooms] = useState([])
   const [currentRoom,SetCurrentRoom] = useState('')
   // const [users, SetUsers] = useState<UserIF[]>([])
-  // const user = useSelector(UserData)
+  const user = useSelector(UserData)
   const token = useSelector(Token)
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Chat: React.FC<Props> = ({socket}) => {
 
     const messageData = {
       room: currentRoom,
-      name: 'name',
+      name: user.name,
       message: message,
       time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
     }

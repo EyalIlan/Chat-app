@@ -4,7 +4,7 @@ import {RootState} from '../store'
 interface initalStateTyep{
 
     value:UserIF
-    token:String | null
+    token:string | null
 }
 
 const initalState:initalStateTyep = {
