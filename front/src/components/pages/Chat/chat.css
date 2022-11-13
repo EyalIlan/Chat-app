@@ -1,0 +1,132 @@
+
+.chat{
+    height: 100vh;
+    width: 100vw;
+    margin: auto;
+    display: flex;
+    background-color: rgb(0, 132, 255);
+    border: 2px solid black;
+    position: relative;
+}
+
+.chat .chat_users_boxes{
+    flex:2
+    
+}
+
+
+
+.chat_userbox{
+    display: flex;
+    padding:10px;
+    background-color: blue;
+    text-align: right;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* meanwhile solution */
+ .chat_userbox > div{
+    flex: 1;
+ }
+
+.chat_userbox img{
+    margin: 0 10px;
+    border-radius: 50px;
+    height: 60px;
+}
+
+
+
+.chat_userbox .chat_userbox_title{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat_userbox_title h1,h2,h3,h4,h5,p{
+    margin: 0;
+    padding: 0;
+}
+
+.chat_userbox:hover{
+    background-color: rgb(54, 54, 247);
+}
+.chat_userbox:active{
+    background-color: rgb(50, 50, 177);
+}
+
+/* overflow: scroll; */
+
+
+
+
+.chat .chat_content{
+    flex: 4;
+    background-color:rgb(248, 248, 248);
+    height: 100%;
+    border-left: 2px solid black;
+    overflow: auto;
+}
+
+.chat_content{
+    position: relative;
+    /* padding: 0 90px; */
+    /* background-color: red; */
+    /* color: aqua; */
+}
+
+
+#message_input{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+#message_input input{
+    width: 100%;
+    padding: 0 30px;
+    font-size: 25px;
+}
+
+.message_container{
+    display: flex;
+    align-items:center;
+
+}
+
+.message{
+    background-color: rgb(0, 72, 255);
+    color: rgb(249, 249, 249);
+    max-width: 300px;
+    min-width: 130px;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: bold;
+    /* height: 200px; */
+}
+
+#messages_space{
+    /* height: 90%; */
+    padding: 0 90px;
+    overflow: auto;
+}
+
+.message > div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.message > div h4{
+    padding: 0;
+}
+
+.left{
+    justify-content: left;
+}
+.right{
+    justify-content: right;
+}
