@@ -15,12 +15,10 @@ function App() {
     <BrowserRouter>
     <div className="App"> 
       <Routes>
-          <Route path='/' element={
-            <Login/>
-          }>
-
-        </Route>
+          {/* <Route path='/' element={<Login/>}></Route> */}
+          <Route path='/' element={<Chat  socket ={socket}/>}></Route>
           <Route path='/chat' element={<Chat socket ={socket}/>}></Route>
+          <Route path='/*' element={<Chat socket ={socket}/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>

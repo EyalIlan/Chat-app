@@ -1,17 +1,12 @@
 
 .chat{
-    height: 100vh;
-    width: 100vw;
-    margin: auto;
-    display: flex;
+    /* height: 100vh;
+    width: 100vw; */
     background-color: rgb(0, 132, 255);
-    border: 2px solid black;
-    position: relative;
 }
 
 .chat .chat_users_boxes{
     flex:2
-    
 }
 
 
@@ -39,7 +34,6 @@
 
 
 .chat_userbox .chat_userbox_title{
-    flex: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,27 +56,12 @@
 
 
 
-.chat .chat_content{
-    flex: 4;
-    background-color:rgb(248, 248, 248);
-    height: 100%;
-    border-left: 2px solid black;
-    overflow: auto;
-}
 
-.chat_content{
-    position: relative;
-    /* padding: 0 90px; */
-    /* background-color: red; */
-    /* color: aqua; */
-}
+
+
 
 
 #message_input{
-    position:absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     display: flex;
 }
 #message_input input{
@@ -94,7 +73,6 @@
 .message_container{
     display: flex;
     align-items:center;
-
 }
 
 .message{
@@ -109,11 +87,7 @@
     /* height: 200px; */
 }
 
-#messages_space{
-    /* height: 90%; */
-    padding: 0 90px;
-    overflow: auto;
-}
+
 
 .message > div{
     display: flex;

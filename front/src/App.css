@@ -90,6 +90,18 @@ hr{
   color: rgb(0, 102, 254);
 }
 
+.flex{
+  display: flex;
+}
+
+.between{
+  justify-content: space-between;
+}
+
+.center{
+  align-items: center;
+}
+
 .btn_web{
   cursor: pointer;
   background-color: rgb(0, 102, 254);
@@ -105,3 +117,5 @@ hr{
 .btn_web:active{
   background-color:rgb(3, 49, 118) ;
 }
+
+/* COLORS */

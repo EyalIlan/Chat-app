@@ -2,8 +2,10 @@ import Axios from '../../../util/Axios/axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import {  Token,UserData } from '../../../util/store/reducers/user';
+import {useNavigate} from 'react-router-dom'
 // import { UserIF } from '../../../util/interface/interface'
 import './chat.css'
+import Navbar from '../../UI/navbar/navbar';
 
 
 
@@ -19,8 +21,12 @@ interface Message {
 
 const Chat: React.FC<Props> = ({socket}) => {
 
+
+
+  const navigate = useNavigate()
+
+  
   const [messagesList, SetMessagesList] = useState<Message[]>([])
- 
   const [message, SetMessage] = useState('')
   const [sendButton, SetSendButton] = useState(false)
   const [rooms, Setrooms] = useState([])
@@ -28,6 +34,9 @@ const Chat: React.FC<Props> = ({socket}) => {
   // const [users, SetUsers] = useState<UserIF[]>([])
   const user = useSelector(UserData)
   const token = useSelector(Token)
+
+
+
 
   useEffect(() => {
 
@@ -43,6 +52,10 @@ const Chat: React.FC<Props> = ({socket}) => {
 
  
   useEffect(() => {
+
+    if(!token){
+      navigate('/')
+    }
 
     const request = async () => {
 
@@ -99,7 +112,7 @@ const Chat: React.FC<Props> = ({socket}) => {
   const   ChangeRoom = async(newRoom:string) =>{
     
     
-    socket.emit('join_room',{roomId:newRoom,oldRoom:currentRoom,username:'user name'})
+    socket.emit('join_room',{roomId:newRoom,oldRoom:currentRoom,username:user.name})
     
     SetCurrentRoom(newRoom)
     try{
@@ -115,12 +128,14 @@ const Chat: React.FC<Props> = ({socket}) => {
 
 
   return (
+    <div>
+    <Navbar></Navbar>
     <div className='chat'>
-      <div className='chat_content'>
+      <div>
         <div id='messages_space'>
           {messagesList.map((p,index) => {
             return (
-              <div key={index} className={p.name === 'name' ? 'message_container left' : 'message_container right'}>
+              <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
                 <div className='message'>
                   <div>
                     <h4>{p.name}</h4>
@@ -135,12 +150,7 @@ const Chat: React.FC<Props> = ({socket}) => {
             )
           })}
         </div>
-
-
-        <div id='message_input'>
-          <input type="text" name="" id="" onChange={(e) => { SetMessage(e.target.value) }} value={message} />
-          <button className='btn btn-success' onClick={SendMessageHandler} disabled={sendButton}>Send</button>
-        </div>
+      
 
       </div>
       <div className='chat_users_boxes scroll'>
@@ -154,7 +164,7 @@ const Chat: React.FC<Props> = ({socket}) => {
                 <p>{p.date}</p> 
                   <h5>{p.name}</h5>
               </div>
-              <p>{p.message}</p>
+              <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: ''}</p>
             </div>
          
            <img src={p.avatar?p.avatar:"/images/defaultuser.png"} style={{'backgroundColor':'white'}} alt="" />
@@ -168,6 +178,7 @@ const Chat: React.FC<Props> = ({socket}) => {
        
       </div>
       
+      </div>
       </div>
   )
 }
