@@ -129,10 +129,12 @@ const Chat: React.FC<Props> = ({socket}) => {
 
   return (
     <div>
-    <Navbar></Navbar>
     <div className='chat'>
-      <div>
-        <div id='messages_space'>
+    <Navbar></Navbar>
+    <div className='container'>
+    <div className='row' id='chat_height'>
+      <div className='col-md bg-secondary '>
+        <div className='Container'>
           {messagesList.map((p,index) => {
             return (
               <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
@@ -149,36 +151,38 @@ const Chat: React.FC<Props> = ({socket}) => {
 
             )
           })}
+          <h1>asfsaf</h1>
         </div>
-      
+          
 
       </div>
-      <div className='chat_users_boxes scroll'>
-      {
-        rooms.map((p:any,index) =>{
-          return(
-            <div key={index} className='chat_userbox' onClick={() =>{ChangeRoom(p.name)}}>
+      <div className='col-md-3 bg-dark scroll'>
+      
+        
+         
+          
+            <div  className='chat_userbox' onClick={() =>{ChangeRoom('')}}>
              
             <div>
               <div className='chat_userbox_title'>
-                <p>{p.date}</p> 
-                  <h5>{p.name}</h5>
+                <p>date</p> 
+                  <h5>name</h5>
               </div>
-              <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: ''}</p>
+              <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: 'hell world'}</p>
             </div>
          
-           <img src={p.avatar?p.avatar:"/images/defaultuser.png"} style={{'backgroundColor':'white'}} alt="" />
+           <img src="/images/defaultuser.png" style={{'backgroundColor':''}} alt="" />
          
-            {/* <hr /> */}
            </div>
-          )
-        })
-      }
-      
+          
+            <hr/>
        
-      </div>
       
-      </div>
+      
+               </div>
+          </div>
+        </div>
+        </div>
       </div>
   )
 }

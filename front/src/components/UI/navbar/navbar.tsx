@@ -8,10 +8,10 @@ const Navbar: React.FC<Props> = (props) => {
         <div >
 
             <div id='navbar' className='bg-primary '>
-                <div className='ContainerPrime'>
+                <div className='container'>
                     <div className='row'>
 
-                        <div className='col-md-9 flex center between'>
+                        <div className='col-md flex center between border_right'>
                             <div>
                                 <img src="images/snorlax.png" alt="" className='logo' />
                                 <img src="images/pikachu.png" alt="" className='logo' />
