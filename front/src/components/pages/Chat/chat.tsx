@@ -111,9 +111,9 @@ const Chat: React.FC<Props> = ({socket}) => {
 
   const   ChangeRoom = async(newRoom:string) =>{
     
+    console.log('in change room');
     
     socket.emit('join_room',{roomId:newRoom,oldRoom:currentRoom,username:user.name})
-    
     SetCurrentRoom(newRoom)
     try{
       const {data} = await Axios.get(`/message?room=${newRoom}`,{headers: { 'Authorization': `Bearer ${token}`}})
@@ -151,35 +151,36 @@ const Chat: React.FC<Props> = ({socket}) => {
 
             )
           })}
-          <h1>asfsaf</h1>
         </div>
           
 
       </div>
       <div className='col-md-3 bg-dark scroll'>
       
-        
-         
-          
-            <div  className='chat_userbox' onClick={() =>{ChangeRoom('')}}>
-             
-            <div>
-              <div className='chat_userbox_title'>
-                <p>date</p> 
-                  <h5>name</h5>
-              </div>
-              <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: 'hell world'}</p>
-            </div>
-         
-           <img src="/images/defaultuser.png" style={{'backgroundColor':''}} alt="" />
-         
-           </div>
-          
-            <hr/>
+              {rooms.map((p:any) =>{
+
+                return(
+                  <div>
+                  <div  className='chat_userbox' onClick={() =>{ChangeRoom(p.name)}}>
+                  <div>
+                    <div className='chat_userbox_title'>
+                        <p>date</p> 
+                        <h5>{p.name}</h5>
+                    </div>
+                    <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: 'hell world'}</p>
+                  </div>
+               
+                 <img src="/images/avatar.jpg" style={{'backgroundColor':''}} alt="" />
+                 </div>
+                 <hr />
+                 </div>
+                )
+                
+              })}
        
       
       
-               </div>
+          </div>
           </div>
         </div>
         </div>
@@ -190,27 +191,8 @@ const Chat: React.FC<Props> = ({socket}) => {
 export default Chat
 
 // test@gmail.com
+// test2@gmail.com
 
 
 
-// <div  className='chat_userbox'>
-             
-// <div>
-//   <div className='chat_userbox_title'>
-//     {/* date */}
-//     <p>date</p> 
-//     <h5>שניר</h5>
-//   </div>
-//   {/* text */}
-//   {/* <p>{Text}</p> */}
-//   <p>טוב אז תעקוב אחרי זה מקווה שיעבור לה מהר</p>
-// </div>
-
-// {/* need to get the image avatar */}
-// <img src="/images/defaultuser.png" style={{'backgroundColor':'white'}} alt="" />
-
-// {/* <hr /> */}
-// </div>
-// <hr />
-// <div  className='chat_userbox'>
 

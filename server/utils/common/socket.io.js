@@ -19,14 +19,13 @@ const  SocketEvents = (io) =>{
 
     io.on('connection',(socket) =>{
 
-        console.log(`User ${socket.id} connected `);
+        console.log(`User ${socket.id} connected`);
     
     
         socket.on('join_room',({roomId,oldRoom,username}) =>{
             // Leave old room
             socket.leave(oldRoom)
             
-
             // join new room
             socket.join(roomId)
             console.log(`User ${username} has join room ${roomId}`);

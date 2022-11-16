@@ -22,6 +22,7 @@ const CreateRoom = async (req, res) => {
            owner:req.user._id
         })
         await createRoom.save()
+        res.status(200).json('room created')
     }
     catch(e){
         console.log(e);
@@ -87,10 +88,46 @@ const GetUserRooms = async(req,res)=>{
 }
 
 
+const SaveRoomAvatarPicture = async(req,res) =>{
+
+    const {name} = req.params
+
+
+    const avatar = req.file.buffer
+
+    try{
+        const responce = await Room.findOneAndUpdate({name,avatar})
+        res.status(200).json('avatar saved')
+    }
+    catch(e){
+        res.status(500).json('Unable to avatar')
+    }
+} 
+
+
+const GetRoomAvatarPicture = async(req,res) =>{
+
+    const {name} = req.params
+    console.log(name);
+    try{
+
+            const room = await Room.findOne({name})
+            res.set('Content-Type','image/jpg')
+            res.send(room.avatar)
+
+    }
+    catch(e){
+        console.log(e);
+        res.status(500).json('Unable to get avatar')
+    }
+}
+
 module.exports = {
     CreateRoom,
     UpdateRoom,
     DeleteRoom,
     GetUserRooms,
-    GetAllRooms
+    GetAllRooms,
+    SaveRoomAvatarPicture,
+    GetRoomAvatarPicture
 }
