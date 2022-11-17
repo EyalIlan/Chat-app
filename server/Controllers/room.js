@@ -108,7 +108,7 @@ const SaveRoomAvatarPicture = async(req,res) =>{
 const GetRoomAvatarPicture = async(req,res) =>{
 
     const {name} = req.params
-    console.log(name);
+  ;
     try{
 
             const room = await Room.findOne({name})

@@ -74,15 +74,16 @@ const Chat: React.FC<Props> = ({socket}) => {
 // Functions
 
   const SendMessageHandler = async () => {
-
+    
     SetSendButton(true)
-
-
+    
+    
     if (message === '') {
       SetSendButton(false)
       return
     }
-
+    console.log('in send message');
+    
     const messageData = {
       room: currentRoom,
       name: user.name,
@@ -109,9 +110,8 @@ const Chat: React.FC<Props> = ({socket}) => {
 
 
 
-  const   ChangeRoom = async(newRoom:string) =>{
+  const  ChangeRoom = async(newRoom:string) =>{
     
-    console.log('in change room');
     
     socket.emit('join_room',{roomId:newRoom,oldRoom:currentRoom,username:user.name})
     SetCurrentRoom(newRoom)
@@ -125,7 +125,8 @@ const Chat: React.FC<Props> = ({socket}) => {
     }
   
   }                
-
+  console.log(messagesList);
+  
 
   return (
     <div>
@@ -133,8 +134,9 @@ const Chat: React.FC<Props> = ({socket}) => {
     <Navbar></Navbar>
     <div className='container'>
     <div className='row' id='chat_height'>
-      <div className='col-md bg-secondary '>
-        <div className='Container'>
+      
+      <div className='col-md flex flex-column'>
+        <div className='Container content'>
           {messagesList.map((p,index) => {
             return (
               <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
@@ -152,7 +154,12 @@ const Chat: React.FC<Props> = ({socket}) => {
             )
           })}
         </div>
-          
+      <div className='flex around center lower_bar'>
+          <img src="/images/defaultuser.png" className='logo click'  alt="" />
+          <input type="text" className='full_width' placeholder='type message' onChange={(e) =>{SetMessage(e.target.value)}} />
+          <button  className='logo click'  onClick={SendMessageHandler} disabled={sendButton}>Send</button>
+          <img src="/images/defaultuser.png" className='logo click' alt="" />
+      </div>
 
       </div>
       <div className='col-md-3 bg-dark scroll'>

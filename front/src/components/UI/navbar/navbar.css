@@ -4,6 +4,10 @@
     /* padding: 10px; */
 }
 
+#navbar .container,#navbar .row{
+    height: 100%;
+}
+
 .logo{
     margin: 0 15px;
     height: 40px;
@@ -24,4 +28,8 @@
 .border_right{
     padding: 8px;
     border-right: 1px solid rgb(214, 189, 189);
+}
+
+.click{
+    cursor: pointer;
 }

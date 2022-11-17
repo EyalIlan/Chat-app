@@ -115,6 +115,24 @@
     width: 90%;
 }
 
+.content{
+  flex:1;
+}
+
 #chat_height{
-    height: 88vh;
+    height:88vh
+}
+
+.lower_bar{
+    background-color: rgb(14, 68, 248);
+    padding: 20px;
+}
+
+.lower_bar input{
+    
+    color: white;
+    border-radius: 5px;
+    padding: 6px 20px;
+    font-size: 20px;
+    background-color: blue;
 }

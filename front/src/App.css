@@ -98,8 +98,18 @@ hr{
   justify-content: space-between;
 }
 
+.around{
+  justify-content: space-around;
+}
+
+
 .center{
   align-items: center;
+}
+
+
+.full_width{
+  width: 80%;
 }
 
 .btn_web{
