@@ -5,7 +5,6 @@ import io from 'socket.io-client'
 import Chat from './components/pages/Chat/chat';
 import Login from './components/pages/Login/Login';
 import Page404 from './components/pages/page404/page404';
-
 const socket = io('http://localhost:5000') 
 
 
@@ -21,8 +20,9 @@ function App() {
           
 
           {/* <Route path='/' element={<Login/>}></Route> */}
-          <Route path='/' element={<Chat socket ={socket}/>}></Route>
+          <Route path='/' element={<Login title='Login'/>}></Route>
           <Route path='/chat' element={<Chat socket ={socket}/>}></Route>
+          <Route path='/signup' element={<Login title='Sign up' signup={true}/>}></Route>
           <Route path='/*' element={<Page404 />}></Route>
       </Routes>
     </div>
