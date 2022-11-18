@@ -26,12 +26,25 @@ const roomSchema = mongoose.Schema({
 },{timestamps: true})
 
 
-roomSchema.pre('remove',async function(next){
 
-
-
-    next()
+roomSchema.virtual('users',{
+    ref:'users',
+    localField:'ingroup',
+    foreignField:'_id'
 })
+
+roomSchema.virtual('messages',{
+    ref:'messages',
+    localField:'_id',
+    foreignField:'room'
+})
+
+// roomSchema.pre('remove',async function(next){
+
+
+
+//     next()
+// })
 
 
 const Room =  mongoose.model('room',roomSchema)

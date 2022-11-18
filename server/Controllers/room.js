@@ -13,6 +13,11 @@ const GetAllRooms = async(req,res) =>{
     }
 }
 
+const GetRoomUser = async() =>{
+
+
+}
+
 
 const CreateRoom = async (req, res) => {
 

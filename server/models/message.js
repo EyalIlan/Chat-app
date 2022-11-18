@@ -9,7 +9,7 @@ const messageSchema = mongoose.Schema({
         trim:true
     },
     room:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         required:true,
     },
     time:{
@@ -25,6 +25,6 @@ const messageSchema = mongoose.Schema({
     }
 },{timestamps: true})
 
-const messages = mongoose.model('message',messageSchema)
+const messages = mongoose.model('messages',messageSchema)
 
 module.exports = messages

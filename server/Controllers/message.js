@@ -1,17 +1,32 @@
 const Message = require('../models/message')
-
+const Room = require('../models/room')
 //
+//TODO deside where to get
 const GetRoomMessages = async (req, res) => {
-    
-   
+
+    console.log('in get messages');
+    console.log(req.body.room);
     try {
-        
-        const roomMessages = await Message.find({ room: req.query.room })
-       
-        res.status(200).json(roomMessages)
+        // const roomMessages = await Message.find({ room: req.body.room })
+        const data = await Room.findOne({room:req.body.room})
+        .populate({
+            path:'users',
+            options:{
+                limit:10,
+                strictPopulate: false
+            }
+        }).populate({
+            path:'messages',
+            options:{
+                strictPopulate: false
+            }
+        })
+        console.log(data.users);
+        res.status(200).json(data)
 
     }
     catch (e) {
+        console.log(e);
         res.status(500).json('Unable to get messages')
     }
 }
