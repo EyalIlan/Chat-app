@@ -135,7 +135,7 @@ const Chat: React.FC<Props> = ({socket}) => {
     <div className='container'>
     <div className='row' id='chat_height'>
       
-      <div className='col-md flex flex-column'>
+      <div className='col-md flex flex-column border_right'>
         <div className='Container content'>
           {messagesList.map((p,index) => {
             return (
@@ -157,12 +157,12 @@ const Chat: React.FC<Props> = ({socket}) => {
       <div className='flex around center lower_bar'>
           <img src="/images/defaultuser.png" className='logo click'  alt="" />
           <input type="text" className='full_width' placeholder='type message' onChange={(e) =>{SetMessage(e.target.value)}} />
-          <button  className='logo click'  onClick={SendMessageHandler} disabled={sendButton}>Send</button>
-          <img src="/images/defaultuser.png" className='logo click' alt="" />
+          <button  className='btn btn-outline-dark'  onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
+          <i className="fa-regular fa-face-smile logo_cdn click"></i>
       </div>
 
       </div>
-      <div className='col-md-3 bg-dark scroll'>
+      <div className='col-md-4 bg-dark scroll'>
       
               {rooms.map((p:any) =>{
 

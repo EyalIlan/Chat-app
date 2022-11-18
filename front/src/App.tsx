@@ -20,7 +20,8 @@ function App() {
           {/* <Route path='/' element={<Login/>}></Route> */}
           
 
-          <Route path='/' element={<Login />}></Route>
+          {/* <Route path='/' element={<Login/>}></Route> */}
+          <Route path='/' element={<Chat socket ={socket}/>}></Route>
           <Route path='/chat' element={<Chat socket ={socket}/>}></Route>
           <Route path='/*' element={<Page404 />}></Route>
       </Routes>

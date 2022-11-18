@@ -12,9 +12,9 @@ const Navbar: React.FC<Props> = (props) => {
                     <div className='row'>
 
                         <div className='col-md flex center between border_right'>
-                            <div>
-                                <img src="images/snorlax.png" alt="" className='logo' />
-                                <img src="images/pikachu.png" alt="" className='logo' />
+                            <div className='flex center'>
+                                <i className="fa-solid fa-ellipsis-vertical logo_cdn click"></i>
+                                <i className="fa-solid fa-magnifying-glass logo_cdn click"></i>
                             </div>
                             <div className='flex center'>
                                 <div className='message_box'>
@@ -26,13 +26,13 @@ const Navbar: React.FC<Props> = (props) => {
 
                         </div>
 
-                        <div className='menu_space col-md-3 flex center between'>
+                        <div className='menu_space col-md-4 flex center between'>
 
 
                         <div>
-                            <img src="images/eevee.png" alt="" className='logo' />
-                            <img src="images/squirtle.png" alt="" className='logo' />
-                            <img src="images/charmander.png" alt="" className='logo' />
+                            <i className="fa-solid fa-ellipsis-vertical logo_cdn click"></i>
+                            <i className="fa-brands fa-rocketchat logo_cdn click"></i>
+                            {/* <img src="images/charmander.png" alt="" className='logo click' /> */}
                          </div>
 
                         <div className='flex center'>

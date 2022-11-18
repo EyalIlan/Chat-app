@@ -135,4 +135,13 @@
     padding: 6px 20px;
     font-size: 20px;
     background-color: blue;
+    border: none;
+    height: 100%;
+    
+}
+
+.lower_bar input::placeholder{
+    color: white;
+    opacity: 0.7;
+    
 }
