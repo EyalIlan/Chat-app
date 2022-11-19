@@ -66,5 +66,6 @@
 }
 
  input[type="file"]{
-    width: 100%;
+    display: none;
 }
+

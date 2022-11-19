@@ -94,6 +94,10 @@ hr{
   display: flex;
 }
 
+.flex_1{
+  flex:1;
+}
+
 .between{
   justify-content: space-between;
 }

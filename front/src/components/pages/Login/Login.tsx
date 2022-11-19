@@ -58,12 +58,16 @@ const Login: React.FC<Props> = ({ title, signup }) => {
       <div className='screen'>
         <div className='form'>
       
-          <div>
+         {signup?<>
+         <div className='flex flex-column'>
             <img src="./images/avatarImage.png" alt="" />
-            <div style={{'textAlign':"center"}}>
-              <input type="file" name="image"  onChange={(e) => { SetEmail(e.target.value) }} />
+            <div className='flex flex_1 center justify-content-center'>
+              <label htmlFor="Userfile" className='btn btn-dark btn-md'>Choose user avatar</label>
+              <input type="file" name="file" id='Userfile'  onChange={(e) => { SetEmail(e.target.value) }} />
             </div>
           </div>
+            </> :''
+          }
           <div>
           <h1>{title}</h1>
             <div>

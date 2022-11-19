@@ -136,7 +136,7 @@ const Chat: React.FC<Props> = ({socket}) => {
     <div className='row' id='chat_height'>
       
       <div className='col-md flex flex-column border_right'>
-        <div className='Container content'>
+        <div className='Container flex_1'>
           {messagesList.map((p,index) => {
             return (
               <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
