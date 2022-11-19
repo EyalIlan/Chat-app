@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { saveUser, saveToken } from '../../../util/store/reducers/user'
 import './Login.css'
+import { read } from 'fs';
 
 
 
@@ -24,7 +25,9 @@ const Login: React.FC<Props> = ({ title, signup }) => {
   const [RePassword,SetRePassword] = useState('')
   const [Error, SetError] = useState('')
   const [showError, SetShowError] = useState(false)
-
+  
+  const [userAvatar,SetUserAvatar] = useState<File>()
+  const [PrevieAvatar,SetPreviewAvatar] = useState<string>()
 
   const LoginHandler = async () => {
 
@@ -38,12 +41,59 @@ const Login: React.FC<Props> = ({ title, signup }) => {
       console.log(e);
 
       SetError(e.message)
+      
       SetShowError(true)
     }
 
 
   }
 
+
+useEffect(() =>{
+
+  if(userAvatar){
+    const reader = new FileReader();
+    
+    reader.onloadend = () =>{
+      SetPreviewAvatar(reader.result as string)
+    }
+    reader.readAsDataURL(userAvatar)
+    
+  }else{
+    SetPreviewAvatar(undefined)  
+  }
+
+},[userAvatar])
+
+  const SignUpUserHandler = async() =>{
+    if(password !== RePassword){
+      SetShowError(true)
+      SetError('password and RePassword need to be equal')
+      return
+    }
+    try {
+      const reqeust = await Axios.post('http://localhost:5000/login', { email, password })  
+      navigate('/')
+    }
+    catch(e){
+      SetShowError(true)
+      SetError('Error trying sign up')
+    }
+
+  }
+
+
+  const imageUploadHandler = (e:any) =>{
+
+    const file = e.target.files[0]
+
+      if(file && file.type.substr(0,5) === "image"){
+        SetUserAvatar(file)
+      }else{
+        SetUserAvatar(undefined)
+      }
+
+  }
 
   let errorMessage = (
     <div className='error_message'>
@@ -60,10 +110,10 @@ const Login: React.FC<Props> = ({ title, signup }) => {
       
          {signup?<>
          <div className='flex flex-column'>
-            <img src="./images/avatarImage.png" alt="" />
+            <img src={PrevieAvatar?`${PrevieAvatar}`:"./images/avatarImage.png"} alt="" />
             <div className='flex flex_1 center justify-content-center'>
-              <label htmlFor="Userfile" className='btn btn-dark btn-md'>Choose user avatar</label>
-              <input type="file" name="file" id='Userfile'  onChange={(e) => { SetEmail(e.target.value) }} />
+              <label htmlFor="Userfile" className='btn btn-dark btn-lg'>Choose user avatar</label>
+              <input type="file" name="file" id='Userfile' accept='image/*'  onChange={(e) => {imageUploadHandler(e)}} />
             </div>
           </div>
             </> :''
@@ -84,8 +134,10 @@ const Login: React.FC<Props> = ({ title, signup }) => {
             </div>
             <input type="text" name="password" id='password' onChange={(e) => { SetRePassword(e.target.value) }} /></div>
              : ''}
-          <div>
-            {signup?<button className='btn btn-primary' onClick={LoginHandler}>Sign up</button>:<button className='btn btn-primary' onClick={LoginHandler}>Login</button>}
+          <div className='flex between'>
+            {/* <button className='btn btn-primary' onClick={signup? :LoginHandler}>Login</button> */}
+            <button className='btn btn-primary' onClick={signup?() =>{navigate('/')}:LoginHandler}>{signup? "Login page":"Login"}</button>
+            <button className='btn btn-primary' onClick={signup?SignUpUserHandler:() =>{navigate('/signup')}}>{signup? "Sign up":"Sign up page"}</button>
           </div>
         </div>
         </div>
