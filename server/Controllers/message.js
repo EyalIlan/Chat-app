@@ -4,8 +4,6 @@ const Room = require('../models/room')
 //TODO deside where to get
 const GetRoomMessages = async (req, res) => {
 
-    console.log('in get messages');
-    console.log(req.body.room);
     try {
         // const roomMessages = await Message.find({ room: req.body.room })
         const data = await Room.findOne({room:req.body.room})
@@ -21,8 +19,7 @@ const GetRoomMessages = async (req, res) => {
                 strictPopulate: false
             }
         })
-        console.log(data.users);
-        res.status(200).json(data)
+        res.status(200).json({messages:data.messages,users:data.users})
 
     }
     catch (e) {
@@ -45,7 +42,7 @@ const SaveMessage = async (req, res) => {
         const NewMessage = new Message(
             {
                 message,
-                room,
+                room:room,
                 name,
                 time,
                 owner: req.user._id

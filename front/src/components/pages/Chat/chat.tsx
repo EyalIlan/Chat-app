@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import {  Token,UserData } from '../../../util/store/reducers/user';
 import {useNavigate} from 'react-router-dom'
-// import { UserIF } from '../../../util/interface/interface'
+import { UserIF } from '../../../util/interface/interface'
 import './chat.css'
 import Navbar from '../../UI/navbar/navbar';
 
@@ -31,8 +31,8 @@ const Chat: React.FC<Props> = ({socket}) => {
   const [sendButton, SetSendButton] = useState(false)
   const [rooms, Setrooms] = useState([])
   const [currentRoom,SetCurrentRoom] = useState('')
-  
-  // const [users, SetUsers] = useState<UserIF[]>([])
+
+  const [roomUsers, SetRoomUsers] = useState<UserIF[]>([])
   const user = useSelector(UserData)
   const token = useSelector(Token)
 
@@ -117,7 +117,8 @@ const Chat: React.FC<Props> = ({socket}) => {
     SetCurrentRoom(newRoom)
     try{
       const {data} = await Axios.get(`/message?room=${newRoom}`,{headers: { 'Authorization': `Bearer ${token}`}})
-      SetMessagesList(data)
+      SetMessagesList(data.messages)
+      SetRoomUsers(data.users)
       
     }
     catch(e){
@@ -134,8 +135,9 @@ const Chat: React.FC<Props> = ({socket}) => {
     <div className='container'>
     <div className='row' id='chat_height'>
       
-      <div className='col-md flex flex-column border_right'>
-        <div className='Container flex_1'>
+      <div className='col-md flex  flex-column border_right'>
+        <div id='chat_content' className='flex_1'>
+          <div>
           {messagesList.map((p,index) => {
             return (
               <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
@@ -152,10 +154,12 @@ const Chat: React.FC<Props> = ({socket}) => {
 
             )
           })}
+          </div>
         </div>
+    
       <div className='flex around center lower_bar'>
           <img src="/images/defaultuser.png" className='logo click'  alt="" />
-          <input type="text" className='full_width' placeholder='type message' onChange={(e) =>{SetMessage(e.target.value)}} />
+          <input type="text" className='input_width' placeholder='type message' onChange={(e) =>{SetMessage(e.target.value)}} />
           <button  className='btn btn-outline-dark'  onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
           <i className="fa-regular fa-face-smile logo_cdn click"></i>
       </div>
@@ -167,7 +171,7 @@ const Chat: React.FC<Props> = ({socket}) => {
 
                 return(
                   <div>
-                  <div  className='chat_userbox' onClick={() =>{ChangeRoom(p.name)}}>
+                  <div  className='chat_userbox' onClick={() =>{ChangeRoom(p._id)}}>
                   <div>
                     <div className='chat_userbox_title'>
                         <p>date</p> 
@@ -176,7 +180,7 @@ const Chat: React.FC<Props> = ({socket}) => {
                     <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: 'hell world'}</p>
                   </div>
                
-                 <img src="/images/avatar.jpg" style={{'backgroundColor':''}} alt="" />
+                 <img src="/images/happiness.png" style={{'backgroundColor':''}} alt="" />
                  </div>
                  <hr />
                  </div>
