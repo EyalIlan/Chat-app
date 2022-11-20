@@ -50,7 +50,7 @@ const Chat: React.FC<Props> = ({socket}) => {
 
   }, [socket])
 
-
+  // https://api.cloudinary.com/v1_1/userImages/image/upload
  
   useEffect(() => {
 
@@ -160,7 +160,7 @@ const Chat: React.FC<Props> = ({socket}) => {
       <div className='flex around center lower_bar'>
           <img src="/images/defaultuser.png" className='logo click'  alt="" />
           <input type="text" className='input_width' placeholder='type message' onChange={(e) =>{SetMessage(e.target.value)}} />
-          <button  className='btn btn-outline-dark'  onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
+          <button  className='btn btn-outline-dark btn-lg'  onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
           <i className="fa-regular fa-face-smile logo_cdn click"></i>
       </div>
 

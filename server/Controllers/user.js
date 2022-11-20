@@ -1,5 +1,5 @@
 const User = require('../models/user')
-
+const {cloudinary} = require ('../utils/common/Clodinary')
 
 
 const GetAllUsers = async(req,res) =>{
@@ -22,12 +22,20 @@ const GetUser = async(req,res) =>{
 
 const SaveNewUser = async(req,res) =>{
     
-    console.log('in save user');
+    const {name,password,email,age,avatar} = req.body
 
-    let user = new User(
-        req.body
-    )
     try{
+        const responce = await cloudinary.uploader
+        .upload(avatar,{
+            upload_preset:'dev_setups'
+        })
+        let user = new User({
+                name,
+                password,
+                email,
+                age:age,
+                image:responce.url
+    })
         await user.save()
         res.status(201).json('User has been Created')
     }

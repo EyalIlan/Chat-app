@@ -8,10 +8,11 @@ import Page404 from './components/pages/page404/page404';
 const socket = io('http://localhost:5000') 
 
 
+console.log(process.env);
+
+//
 function App() {
 
-
-  
   return (
     <BrowserRouter>
     <div className="App"> 

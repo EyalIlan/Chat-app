@@ -4,7 +4,6 @@ import Axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { saveUser, saveToken } from '../../../util/store/reducers/user'
 import './Login.css'
-import { read } from 'fs';
 
 
 
@@ -26,7 +25,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
   const [age,SetAge] = useState(0)
   const [username,SetUserName] = useState('')
 
-  const [userAvatar,SetUserAvatar] = useState<File>()
+  const [userAvatar,SetUserAvatar] = useState<any>()
   const [PrevieAvatar,SetPreviewAvatar] = useState<string>()
 
   const [Error, SetError] = useState('')
@@ -52,8 +51,8 @@ const Login: React.FC<Props> = ({ title, signup }) => {
 
 
   }
-
-
+//
+//
 useEffect(() =>{
 
   if(userAvatar){
@@ -76,11 +75,19 @@ useEffect(() =>{
       SetError('password and RePassword need to be equal')
       return
     }
+   
+
+
     try {
-      const responce = await Axios.post('http://localhost:5000/user', { email, password,age,name:username })  
-      navigate('/')
+
+        const responce = await Axios.post('http://localhost:5000/user', { email, password,age,name:username,avatar:PrevieAvatar})  
+        navigate('/')
     }
     catch(e){
+      
+      console.log(e);
+      
+
       SetShowError(true)
       SetError('Error trying sign up')
     }
