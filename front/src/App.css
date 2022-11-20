@@ -49,10 +49,18 @@ hr{
   opacity: 0.4;
   z-index: -1;
 }
-
+/* ydw01kttqs */
 
 .scroll{
   overflow: auto;
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;
 }
 
 .title{

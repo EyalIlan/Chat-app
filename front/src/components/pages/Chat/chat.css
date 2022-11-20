@@ -119,7 +119,7 @@
 #chat_content{
     /* margin: auto; */
     /* width: 85%; */
-    max-height: 547px;
+    max-height: 78vh;
     overflow: auto;
 }
 
@@ -134,7 +134,8 @@
 
 .lower_bar{
     background-color: rgb(14, 68, 248);
-    padding: 20px;
+    height:10vh ;
+    padding:10px 20px;
 }
 
 .lower_bar input{
