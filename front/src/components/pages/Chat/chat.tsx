@@ -31,6 +31,7 @@ const Chat: React.FC<Props> = ({socket}) => {
   const [sendButton, SetSendButton] = useState(false)
   const [rooms, Setrooms] = useState([])
   const [currentRoom,SetCurrentRoom] = useState('')
+  
   // const [users, SetUsers] = useState<UserIF[]>([])
   const user = useSelector(UserData)
   const token = useSelector(Token)
@@ -82,7 +83,6 @@ const Chat: React.FC<Props> = ({socket}) => {
       SetSendButton(false)
       return
     }
-    console.log('in send message');
     
     const messageData = {
       room: currentRoom,
@@ -125,7 +125,6 @@ const Chat: React.FC<Props> = ({socket}) => {
     }
   
   }                
-  console.log(messagesList);
   
 
   return (

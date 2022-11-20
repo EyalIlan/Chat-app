@@ -22,6 +22,8 @@ const GetUser = async(req,res) =>{
 
 const SaveNewUser = async(req,res) =>{
     
+    console.log('in save user');
+
     let user = new User(
         req.body
     )

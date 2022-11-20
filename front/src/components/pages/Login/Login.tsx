@@ -23,11 +23,16 @@ const Login: React.FC<Props> = ({ title, signup }) => {
   const [email, SetEmail] = useState('')
   const [password, SetPassword] = useState('')
   const [RePassword,SetRePassword] = useState('')
+  const [age,SetAge] = useState(0)
+  const [username,SetUserName] = useState('')
+
+  const [userAvatar,SetUserAvatar] = useState<File>()
+  const [PrevieAvatar,SetPreviewAvatar] = useState<string>()
+
   const [Error, SetError] = useState('')
   const [showError, SetShowError] = useState(false)
   
-  const [userAvatar,SetUserAvatar] = useState<File>()
-  const [PrevieAvatar,SetPreviewAvatar] = useState<string>()
+
 
   const LoginHandler = async () => {
 
@@ -66,13 +71,13 @@ useEffect(() =>{
 },[userAvatar])
 
   const SignUpUserHandler = async() =>{
-    if(password !== RePassword){
+    if(password !== RePassword || password.length < 5){
       SetShowError(true)
       SetError('password and RePassword need to be equal')
       return
     }
     try {
-      const reqeust = await Axios.post('http://localhost:5000/login', { email, password })  
+      const responce = await Axios.post('http://localhost:5000/user', { email, password,age,name:username })  
       navigate('/')
     }
     catch(e){
@@ -96,7 +101,7 @@ useEffect(() =>{
   }
 
   let errorMessage = (
-    <div className='error_message'>
+    <div className='p-3 mb-2 bg-danger text-white'>
       <p>
         {Error}
       </p>
@@ -121,7 +126,13 @@ useEffect(() =>{
           <div>
           <h1>{title}</h1>
             <div>
-            {showError ? errorMessage : ''}
+          {showError ? errorMessage : ''}
+
+          {signup? <div> <div>
+            <label htmlFor="username">Username</label>
+            </div>
+            <input type="text" name="username" id='username' onChange={(e) => { SetUserName(e.target.value)}} /></div>:''}
+
             <label htmlFor="email">Email</label>
             </div>
               <input type="text" name="email" id='email' onChange={(e) => { SetEmail(e.target.value) }} />
@@ -129,12 +140,18 @@ useEffect(() =>{
             <label htmlFor="password">Password</label>
             </div>
             <input type="text" name="password" id='password' onChange={(e) => { SetPassword(e.target.value) }} />
-            {signup ?<div> <div>
+          {signup ?<div> 
+            <div>
             <label htmlFor="password">RePassword</label>
             </div>
-            <input type="text" name="password" id='password' onChange={(e) => { SetRePassword(e.target.value) }} /></div>
+            <input type="text" name="password" id='password' onChange={(e) => { SetRePassword(e.target.value) }} />
+            <div>
+            <label htmlFor="age">Age</label>
+            </div>
+            <input type="number" name="age" id='age' onChange={(e) => { SetAge(parseInt(e.target.value))}} />
+                </div>
              : ''}
-          <div className='flex between'>
+            <div className='flex between'>
             {/* <button className='btn btn-primary' onClick={signup? :LoginHandler}>Login</button> */}
             <button className='btn btn-primary' onClick={signup?() =>{navigate('/')}:LoginHandler}>{signup? "Login page":"Login"}</button>
             <button className='btn btn-primary' onClick={signup?SignUpUserHandler:() =>{navigate('/signup')}}>{signup? "Sign up":"Sign up page"}</button>
