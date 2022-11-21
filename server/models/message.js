@@ -19,10 +19,10 @@ const messageSchema = mongoose.Schema({
         type:String,
         required:true,
     },
-    owner:{
-        type:String,
-        required:false,
-    }
+    // owner:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     required:false,
+    // }
 },{timestamps: true})
 
 const messages = mongoose.model('messages',messageSchema)

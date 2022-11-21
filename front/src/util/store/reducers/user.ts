@@ -12,7 +12,7 @@ const initalState:initalStateTyep = {
         name:'',
         email:'',
         age:0,
-        avatar:null
+        image:''
     },
     token: null
 }

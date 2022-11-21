@@ -80,7 +80,7 @@ useEffect(() =>{
 
     try {
 
-        const responce = await Axios.post('http://localhost:5000/user', { email, password,age,name:username,avatar:PrevieAvatar})  
+        const responce = await Axios.post('http://localhost:5000/user', { email, password,age,name:username,userImage:PrevieAvatar})  
         navigate('/')
     }
     catch(e){

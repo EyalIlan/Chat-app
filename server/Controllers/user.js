@@ -22,11 +22,11 @@ const GetUser = async(req,res) =>{
 
 const SaveNewUser = async(req,res) =>{
     
-    const {name,password,email,age,avatar} = req.body
+    const {name,password,email,age,userImage} = req.body
 
     try{
         const responce = await cloudinary.uploader
-        .upload(avatar,{
+        .upload(userImage,{
             upload_preset:'dev_setups'
         })
         let user = new User({

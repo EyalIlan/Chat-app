@@ -1,12 +1,25 @@
 
 export interface UserIF{
 
+    _id?:string
+
     name:string
     
     email:String
 
     age:number
 
-    avatar:Buffer | null
+    image:string
 
+}
+
+export interface MessageIF{
+    
+    message:string
+
+    roon:string
+
+    name:string
+
+    time:Date
 }

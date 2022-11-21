@@ -167,10 +167,10 @@ const Chat: React.FC<Props> = ({socket}) => {
       </div>
       <div className='col-md-4 bg-dark scroll'>
       
-              {rooms.map((p:any) =>{
+              {rooms.map((p:any,index:number) =>{
 
                 return(
-                  <div>
+                  <div key={index}>
                   <div  className='chat_userbox' onClick={() =>{ChangeRoom(p._id)}}>
                   <div>
                     <div className='chat_userbox_title'>

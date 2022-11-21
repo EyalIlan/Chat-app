@@ -1,9 +1,18 @@
 import React from 'react'
 import './navbar.css'
+import {useSelector} from 'react-redux'
+import { UserData } from '../../../util/store/reducers/user'
 
 type Props = {}
 
 const Navbar: React.FC<Props> = (props) => {
+    
+    const user  = useSelector(UserData)
+    
+
+    console.log(user.image);
+    
+
     return (
         <div >
 
@@ -36,7 +45,8 @@ const Navbar: React.FC<Props> = (props) => {
                          </div>
 
                         <div className='flex center'>
-                                <img src="images/defaultuser.png" alt="" className='avatar' />
+                                <h2>{user.name}</h2>
+                                <img src={user.image?user.image:"images/defaultuser.png"} alt="" className='avatar' />
                         </div>
                         
 
