@@ -9,9 +9,8 @@ const roomSchema = mongoose.Schema({
         unique:true
     },
 
-    avatar:{
-        type:Buffer,
-        required:false
+    imageUrl:{
+        type:String
     },
     owner:{
         type:mongoose.Schema.Types.ObjectId,
@@ -26,6 +25,11 @@ const roomSchema = mongoose.Schema({
 },{timestamps: true})
 
 
+roomSchema.methods.getRoom = function(){
+    const room = this
+    const roomObject = room.toObject()
+    delete roomObject.ingroup
+}
 
 roomSchema.virtual('users',{
     ref:'users',

@@ -2,15 +2,18 @@ import React from 'react'
 import './navbar.css'
 import {useSelector} from 'react-redux'
 import { UserData } from '../../../util/store/reducers/user'
+import { RoomInfo,RoomUsers} from '../../../util/store/reducers/room'
 
-type Props = {}
+type Props = {
+
+}
 
 const Navbar: React.FC<Props> = (props) => {
     
     const user  = useSelector(UserData)
+    const room = useSelector(RoomInfo)
+    const roomUsers = useSelector(RoomUsers)
     
-
-    console.log(user.image);
     
 
     return (
@@ -27,8 +30,12 @@ const Navbar: React.FC<Props> = (props) => {
                             </div>
                             <div className='flex center'>
                                 <div className='message_box'>
-                                    <h3>חן</h3>
-                                    <p>חןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןןן</p>
+                                    <h3>{room.name}</h3>
+                                    <div className='flex'>
+                                    {roomUsers.length>0?roomUsers.map((p,index) =>{
+                                            return <p key={index}>,{p.name}</p>
+                                    }):<p>group users</p>}
+                                    </div>
                                 </div>
                                 <img src="images/defaultuser.png" alt="" className='avatar' />
                             </div>

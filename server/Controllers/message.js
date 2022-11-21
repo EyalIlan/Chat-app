@@ -4,9 +4,12 @@ const Room = require('../models/room')
 //TODO deside where to get
 const GetRoomMessages = async (req, res) => {
 
+    console.log('in get room messages');
+    console.log(req.query.roomId);
+
     try {
         // const roomMessages = await Message.find({ room: req.body.room })
-        const data = await Room.findOne({room:req.body.room})
+        const data = await Room.findById(req.query.roomId)
         .populate({
             path:'users',
             options:{
@@ -19,6 +22,7 @@ const GetRoomMessages = async (req, res) => {
                 strictPopulate: false
             }
         })
+
         res.status(200).json({messages:data.messages,users:data.users})
 
     }

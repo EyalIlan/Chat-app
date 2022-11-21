@@ -5,6 +5,7 @@ import {MessageIF,UserIF} from '../../interface/interface'
 interface initalStateTyep{
 
     roomInfo:{
+        _id:string
         name:string,
         image:string,
         owner:string
@@ -16,6 +17,7 @@ interface initalStateTyep{
 
 const initalState:initalStateTyep = {
     roomInfo:{
+        _id:'',
         name:'',
         image:'',
         owner:''
@@ -47,7 +49,7 @@ const RoomSlice = createSlice({
             })  
         },
 
-        saveMRoomessages:(state,action) =>{
+        saveRooMessages:(state,action) =>{
             state.RoomMessages = action.payload
         },
         saveNewRoomMessage:(state,action) =>{
@@ -59,7 +61,7 @@ const RoomSlice = createSlice({
     }
 })
 
-export const {saveRoomUsers,saveRoomNewUser,removeRoomUser,saveMRoomessages,saveNewRoomMessage}  = RoomSlice.actions
+export const {saveRoomInfo,saveRoomUsers,saveRoomNewUser,removeRoomUser,saveRooMessages,saveNewRoomMessage}  = RoomSlice.actions
 
 export const RoomInfo = (state:RootState) => state.room.roomInfo
 export const RoomUsers = (state:RootState) => state.room.RoomUsers
