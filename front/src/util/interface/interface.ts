@@ -21,5 +21,5 @@ export interface MessageIF{
 
     name:string
 
-    time:Date
+    time:string
 }

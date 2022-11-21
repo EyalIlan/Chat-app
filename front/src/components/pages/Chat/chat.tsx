@@ -2,6 +2,8 @@ import Axios from '../../../util/Axios/axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import {  Token,UserData } from '../../../util/store/reducers/user';
+import {  RoomMessages,RoomInfo,saveMRoomessages,saveNewRoomMessage } from '../../../util/store/reducers/room';
+import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import { UserIF } from '../../../util/interface/interface'
 import './chat.css'
@@ -22,9 +24,10 @@ interface Message {
 const Chat: React.FC<Props> = ({socket}) => {
 
 
-
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const Messages = useSelector(RoomMessages)
   
   const [messagesList, SetMessagesList] = useState<Message[]>([])
   const [message, SetMessage] = useState('')
@@ -42,7 +45,8 @@ const Chat: React.FC<Props> = ({socket}) => {
   useEffect(() => {
 
     socket.on('receive_message', (data: Message) => {
-      SetMessagesList((prev) => [...prev, data])
+      dispatch(saveNewRoomMessage(data))
+      // SetMessagesList((prev) => [...prev, data])
     })
 
 
@@ -103,7 +107,8 @@ const Chat: React.FC<Props> = ({socket}) => {
       console.log(e);
       
     }
-      SetMessagesList((prev) => [...prev, messageData])
+      dispatch(saveNewRoomMessage(messageData))
+      // SetMessagesList((prev) => [...prev, messageData])
       SetMessage('')
 
   }
@@ -117,7 +122,8 @@ const Chat: React.FC<Props> = ({socket}) => {
     SetCurrentRoom(newRoom)
     try{
       const {data} = await Axios.get(`/message?room=${newRoom}`,{headers: { 'Authorization': `Bearer ${token}`}})
-      SetMessagesList(data.messages)
+      dispatch(saveMRoomessages(data.messages))
+      // SetMessagesList(data.messages)
       SetRoomUsers(data.users)
       
     }
@@ -138,7 +144,7 @@ const Chat: React.FC<Props> = ({socket}) => {
       <div className='col-md flex  flex-column border_right'>
         <div id='chat_content' className='flex_1'>
           <div>
-          {messagesList.map((p,index) => {
+          {Messages.map((p,index) => {
             return (
               <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
                 <div className='message'>
@@ -177,7 +183,7 @@ const Chat: React.FC<Props> = ({socket}) => {
                         <p>date</p> 
                         <h5>{p.name}</h5>
                     </div>
-                    <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: 'hell world'}</p>
+                    <p>{messagesList.length > 0? messagesList[messagesList.length-1].message: ''}</p>
                   </div>
                
                  <img src="/images/happiness.png" style={{'backgroundColor':''}} alt="" />
