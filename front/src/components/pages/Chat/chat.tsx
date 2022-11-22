@@ -2,7 +2,8 @@ import Axios from '../../../util/Axios/axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import {  Token,UserData } from '../../../util/store/reducers/user';
-import {  RoomMessages,RoomInfo,RoomUsers,saveRooMessages,saveNewRoomMessage,saveRoomInfo,saveRoomUsers } from '../../../util/store/reducers/room';
+import {  RoomMessages,RoomInfo,saveRooMessages,saveNewRoomMessage,saveRoomInfo,saveRoomUsers } from '../../../util/store/reducers/room';
+import { leftmenu } from '../../../util/store/reducers/feature'
 import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import './chat.css'
@@ -30,12 +31,13 @@ const Chat: React.FC<Props> = ({socket}) => {
   const [sendButton, SetSendButton] = useState(false)
   const [rooms, Setrooms] = useState([])
 
-  
+  //  Use SELECTOR 
   const user = useSelector(UserData)
   const token = useSelector(Token)
   const room = useSelector(RoomInfo)
-  const roomUsers = useSelector(RoomUsers)
   const Messages = useSelector(RoomMessages)
+  const LeftMenu = useSelector(leftmenu)
+
 
 
   useEffect(() => {
@@ -85,6 +87,8 @@ const Chat: React.FC<Props> = ({socket}) => {
       return
     }
     
+
+
     const messageData = {
       room: room._id,
       name: user.name,
@@ -136,11 +140,20 @@ const Chat: React.FC<Props> = ({socket}) => {
   
   return (
     <div>
+
+    
+
     <div className='chat'>
     <Navbar></Navbar>
     <div className='container'>
     <div className='row' id='chat_height'>
       
+   {LeftMenu?<div className='col-md-4 bg-dark scroll border_right'>
+    
+    </div>
+  :''  
+}
+
       <div className='col-md flex  flex-column border_right'>
         <div id='chat_content' className='flex_1'>
           <div>
@@ -165,7 +178,7 @@ const Chat: React.FC<Props> = ({socket}) => {
     
       <div className='flex around center lower_bar'>
           <img src="/images/defaultuser.png" className='logo click'  alt="" />
-          <input type="text" className='input_width' placeholder='type message' onChange={(e) =>{SetMessage(e.target.value)}} />
+          <input type="text" className='input_width' placeholder='type message' value={message} onChange={(e) =>{SetMessage(e.target.value)}} />
           <button  className='btn btn-outline-dark btn-lg'  onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
           <i className="fa-regular fa-face-smile logo_cdn click"></i>
       </div>
@@ -189,7 +202,7 @@ const Chat: React.FC<Props> = ({socket}) => {
                  <img src="/images/happiness.png" style={{'backgroundColor':''}} alt="" />
                  </div>
                  <hr />
-                 </div>
+      </div>
                 )
                 
               })}
