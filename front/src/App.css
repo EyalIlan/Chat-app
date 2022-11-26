@@ -121,9 +121,7 @@ hr{
 }
 
 
-.input_width{
-  width: 80%;
-}
+
 
 .btn_web{
   cursor: pointer;
@@ -145,5 +143,20 @@ hr{
 .btn_transperant{
   background-color: transparent;
 }
+
+/* HR */
+.box_line{
+  height: 3px;
+  margin: 3px 0;
+}
+
+
+/* TEXT */
+
+.medium_text{
+  font-size: 20px;
+  font-weight: 500;
+}
+
 /* COLORS */
 

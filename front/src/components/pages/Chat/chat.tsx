@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { Token, UserData } from '../../../util/store/reducers/user';
 import { RoomMessages, RoomInfo, saveRooMessages, saveNewRoomMessage, saveRoomInfo, saveRoomUsers } from '../../../util/store/reducers/room';
-import { leftmenu } from '../../../util/store/reducers/feature'
+import { Showmenu } from '../../../util/store/reducers/feature'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
 import Navbar from '../../UI/navbar/navbar';
+import SideMenu from '../../UI/sideMenu/sideMenu';
 
 
 
@@ -36,7 +37,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
   const token = useSelector(Token)
   const room = useSelector(RoomInfo)
   const Messages = useSelector(RoomMessages)
-  const LeftMenu = useSelector(leftmenu)
+  const showMenu = useSelector(Showmenu)
 
 
 
@@ -57,7 +58,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
   useEffect(() => {
 
     if (!token) {
-      navigate('/')
+      // navigate('/')
     }
 
     const request = async () => {
@@ -169,7 +170,10 @@ const Chat: React.FC<Props> = ({ socket }) => {
         <div className='container'>
           <div className='row' id='chat_height'>
 
-            {LeftMenu ? <div className='col-md-4 bg-dark scroll border_right'>
+            {showMenu ? <div className='col-md-4 bg-dark scroll border_right'>
+
+                  <SideMenu></SideMenu>
+
 
             </div>
               : ''
@@ -180,7 +184,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
                 <div>
                   {Messages.map((p, index) => {
                     return (
-                      <div key={index} className={p.name === user.name ? 'message_container left' : 'message_container right'}>
+                      <div key={index} className={p.name === user.name ? 'flex message_container left' : 'flex message_container right'}>
                         <div className='message'>
                           <div>
                             <h4>{p.name}</h4>
@@ -199,7 +203,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
 
               <div className='flex around center lower_bar'>
                 <img src="/images/defaultuser.png" className='logo click' alt="" />
-                <input type="text" className='input_width' placeholder='type message' value={message} onChange={(e) => { SetMessage(e.target.value) }} />
+                <input type="text" className='input' placeholder='type message' value={message} onChange={(e) => { SetMessage(e.target.value) }} />
                 <button className='btn btn-outline-dark btn-lg' onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
                 <i className="fa-regular fa-face-smile logo_cdn click"></i>
               </div>
@@ -213,7 +217,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
                   <div key={index}>
                     <div className='chat_userbox' onClick={() => { ChangeRoom(p) }}>
                       <div>
-                        <div className='chat_userbox_title'>
+                        <div className='flex  align-items-center justify-content-between'>
                           <p>date</p>
                           <h5>{p.name}</h5>
                         </div>

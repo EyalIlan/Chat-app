@@ -3,7 +3,7 @@ import './navbar.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { UserData } from '../../../util/store/reducers/user'
 import { RoomInfo, RoomUsers } from '../../../util/store/reducers/room'
-import { leftmenuChange, leftmenu } from '../../../util/store/reducers/feature'
+import { SidemenuChange,SidemenuType, Showmenu } from '../../../util/store/reducers/feature'
 
 type Props = {
 
@@ -15,9 +15,14 @@ const Navbar: React.FC<Props> = (props) => {
     const room = useSelector(RoomInfo)
     const roomUsers = useSelector(RoomUsers)
 
-    const LeftMenu = useSelector(leftmenu)
+    const showmenu = useSelector(Showmenu)
 
     const dispatch = useDispatch()
+
+    const SideMeunHandler  = (type:string) =>{
+        dispatch(SidemenuChange()) 
+        dispatch(SidemenuType(type))
+    }
 
 
     return (
@@ -28,7 +33,7 @@ const Navbar: React.FC<Props> = (props) => {
                     <div className='row'>
 
 
-                        {LeftMenu ? <div className='col-md-4 flex  border_right'>
+                        {showmenu ? <div className='col-md-4 flex  border_right'>
 
 
 
@@ -38,8 +43,8 @@ const Navbar: React.FC<Props> = (props) => {
 
                         <div className='col-md flex center between border_right'>
                             <div className='flex center'>
-                                <i className="fa-solid fa-ellipsis-vertical logo_cdn click"></i>
-                                <i className="fa-solid fa-magnifying-glass logo_cdn click" onClick={() => { dispatch(leftmenuChange()) }}></i>
+                                <i className="fa-solid fa-ellipsis-vertical logo_cdn click" onClick={()=>{SideMeunHandler('detail')}}></i>
+                                <i className="fa-solid fa-magnifying-glass logo_cdn click" onClick={()=>{SideMeunHandler('search')}}></i>
                             </div>
                             <div className='flex center'>
                                 <div className='message_box'>

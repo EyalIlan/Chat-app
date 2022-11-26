@@ -4,9 +4,6 @@ const Room = require('../models/room')
 //TODO deside where to get
 const GetRoomMessages = async (req, res) => {
 
-    console.log('in get room messages');
-    console.log(req.query.roomId);
-
     try {
         // const roomMessages = await Message.find({ room: req.body.room })
         const data = await Room.findById(req.query.roomId)
