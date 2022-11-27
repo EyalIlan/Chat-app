@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { sideMenuType } from '../../../util/store/reducers/feature'
-import { RoomMessages,RoomUsers } from '../../../util/store/reducers/room'
+import { RoomMessages,RoomUsers,RoomInfo } from '../../../util/store/reducers/room'
+import { showModal,ChangeModalShowing } from '../../../util/store/reducers/feature'
 import { MessageIF } from '../../../util/interface/interface'
-
+import  Axios  from 'axios'
+import Modal from '../modal/modal'
 
 import './sideMenu.css'
 
@@ -18,10 +20,14 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
     const [searchTerm, SetSearchTerm] = useState('')
     const [filterMessages, SetFilterMessages] = useState<MessageIF[]>([])
 
+
+    const dispatch = useDispatch()
+
     const menuType = useSelector(sideMenuType)
     const messages = useSelector(RoomMessages)
     const users = useSelector(RoomUsers)
-
+    const room = useSelector(RoomInfo)
+    const ShowModal = useSelector(showModal)
 
     const searchHandler = (term: string) => {
 
@@ -36,6 +42,12 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
                     SetFilterMessages(FilterMessage)
         }
 
+    }
+
+    const getAllGroupUsersHandler = async () =>{
+        
+        
+        dispatch(ChangeModalShowing(true))
     }
 
 
@@ -55,9 +67,8 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
                             <div key={index}>
                                 <div className='chat_userbox' >
                                     <div>
-                                        <div className='chat_userbox_title'>
+                                        <div >
                                             <p>date</p>
-                                            {/* <h5>{p.message}</h5> */}
                                         </div>
                                         <p>{p.message}</p>
                                     </div>
@@ -80,20 +91,20 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
         <div className='box'>
             <div className='flex flex-column justify-content-center align-items-center'>
             <img className='box_avatar_image' src="/images/avatarImage.png" alt="" />
-            <h2>שם חדר</h2>
-            <span className='medium_text'><p>שם</p></span>
+            <h2>{room.name} </h2>
+            <span className='medium_text'><p> קבוצה- גודל משתתפים</p></span>
             </div>
             {/* <hr className='bg-white box_line'/> */}
         </div>
 
-        <div className='box'>
+        <div className='box scroll'>
 
                 {users.map((p,index) =>{
                     return (
                         <div key={index}>
-                        <div className='chat_userbox' >
+                        <div className='chat_userbox'>
                           <div>
-                            <div className='chat_userbox_title'>
+                            <div >
                               <h5>{p.name}</h5>
                             </div>
                             <p>message</p>
@@ -104,10 +115,12 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
                       </div>
                     ) 
                 })}
-
         </div>
 
+        <div className='box flex justify-content-center'>
+            <button className='btn btn-primary' onClick={getAllGroupUsersHandler}>show all users</button>
 
+        </div>
         </div>  
         )
     }
@@ -115,6 +128,8 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
     return (
         <div>
+           {ShowModal?<Modal></Modal>:''}
+
             {menu}
         </div>
     )

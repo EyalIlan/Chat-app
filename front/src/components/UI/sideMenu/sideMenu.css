@@ -8,3 +8,12 @@
     border-radius: 50%;
     border: 2px solid white;
 }
+
+.openMenu{
+    animation-name: openMenu;
+    animation-duration: 1s;
+}
+
+.xyx{
+z-index: 1000;
+}

@@ -118,11 +118,11 @@ useEffect(() =>{
   return (
     <div>
       <div className='screen'>
-        <div className='form'>
+        <div className='form form_padding flex justify-content-between'>
       
          {signup?<>
          <div className='flex flex-column'>
-            <img src={PrevieAvatar?`${PrevieAvatar}`:"./images/avatarImage.png"} alt="" />
+            <img id='form_image' src={PrevieAvatar?`${PrevieAvatar}`:"./images/avatarImage.png"} alt="" />
             <div className='flex flex_1 center justify-content-center'>
               <label htmlFor="Userfile" className='btn btn-dark btn-lg'>Choose user avatar</label>
               <input type="file" name="file" id='Userfile' accept='image/*'  onChange={(e) => {imageUploadHandler(e)}} />

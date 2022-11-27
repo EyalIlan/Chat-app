@@ -10,17 +10,21 @@
 }
 
 .form{
-    display: flex;
     /* align-items: center; */
-    justify-content: space-between;
     box-shadow: 5px 10px black;
     min-height: 350px;
-    padding: 20px 50px;
+   
     border: 1px solid black;
     position: relative;
 }
 
-.form img{
+.form_padding{
+    padding: 20px 50px;
+}
+
+
+
+#form_image{
     margin-right: 20px;
     margin-top: 20px;
     height: 400px; 

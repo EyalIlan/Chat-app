@@ -170,8 +170,8 @@ const Chat: React.FC<Props> = ({ socket }) => {
         <div className='container'>
           <div className='row' id='chat_height'>
 
-            {showMenu ? <div className='col-md-4 bg-dark scroll border_right'>
-
+            {showMenu ? <div className='col-md-4 bg-dark  scroll border_right'>
+              
                   <SideMenu></SideMenu>
 
 
@@ -187,8 +187,8 @@ const Chat: React.FC<Props> = ({ socket }) => {
                       <div key={index} className={p.name === user.name ? 'flex message_container left' : 'flex message_container right'}>
                         <div className='message'>
                           <div>
-                            <h4>{p.name}</h4>
-                            <h4>{p.time}</h4>
+                            <h5>{p.name}</h5>
+                            <h5>{p.time}</h5>
                           </div>
                           <p>
                             {messageLengthHandler(p.message, 50)}
