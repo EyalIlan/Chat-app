@@ -12,7 +12,7 @@
 #modal{
     min-width: 50vw;
     min-height: 400px;
-    max-height: 600px;
+    max-height: 500px;
 }
 
 .Modal::before{
