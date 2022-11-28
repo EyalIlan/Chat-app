@@ -5,7 +5,7 @@ const UserContoller = require('../Controllers/user')
 const router = express.Router()
 
 
-router.get('/allusers',Auth,UserContoller.GetAllUsers)
+router.get('/allusers',UserContoller.GetAllUsers)
 
 router.get('/',Auth,UserContoller.GetUser)
 

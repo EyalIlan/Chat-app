@@ -10,8 +10,9 @@
 }
 
 #modal{
-    min-width: 40vw;
-    max-height: 500px;
+    min-width: 50vw;
+    min-height: 400px;
+    max-height: 600px;
 }
 
 .Modal::before{
