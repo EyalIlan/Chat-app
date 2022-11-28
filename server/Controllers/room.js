@@ -13,7 +13,27 @@ const GetAllRooms = async(req,res) =>{
     }
 }
 
+const GetAllRoomUsers = async (req,res) =>{
+;
 
+    try{
+        
+
+        const room = await Room.findById(req.params.id).populate({
+            path:'users',
+            options:{
+                strictPopulate:false
+            }
+        })
+
+
+        res.status(200).json({users:room.users})
+
+    }
+    catch(e){
+        res.status(500).json('cant get users')
+    }
+}
 
 
 const CreateRoom = async (req, res) => {
@@ -131,5 +151,6 @@ module.exports = {
     GetUserRooms,
     GetAllRooms,
     SaveRoomAvatarPicture,
-    GetRoomAvatarPicture
+    GetRoomAvatarPicture,
+    GetAllRoomUsers
 }

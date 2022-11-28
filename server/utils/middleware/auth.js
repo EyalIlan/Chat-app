@@ -8,7 +8,8 @@ const Auth = async(req,res,next) =>{
 
         const token =  req.header('Authorization').replace('Bearer ','')
 
-        
+      
+
         const decoded = Jwt.verify(token,process.env.TOKEN_PASSWORD)
         
         
@@ -17,7 +18,8 @@ const Auth = async(req,res,next) =>{
         if(!user){
             throw new Error()
        }
-    
+        
+
         req.user = user
         
         req.token = token

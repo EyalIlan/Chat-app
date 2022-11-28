@@ -25,10 +25,9 @@
 
 
 #form_image{
-    margin-right: 20px;
-    margin-top: 20px;
-    height: 400px; 
-    width: 400px;
+  
+   height: 500px; 
+   width: 500px;
 }
 
 .form::before{
@@ -69,3 +68,6 @@
     display: none;
 }
 
+.red{
+    background-color: red;
+}

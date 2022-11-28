@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 
 import { useSelector,useDispatch } from 'react-redux'
 import { sideMenuType } from '../../../util/store/reducers/feature'
-import { RoomMessages,RoomUsers,RoomInfo } from '../../../util/store/reducers/room'
+import { RoomMessages,RoomUsers,RoomInfo,saveRoomUsers } from '../../../util/store/reducers/room'
 import { showModal,ChangeModalShowing } from '../../../util/store/reducers/feature'
+import { Token } from '../../../util/store/reducers/user'
 import { MessageIF } from '../../../util/interface/interface'
-import  Axios  from 'axios'
+import  Axios  from '../../../util/Axios/axios'
 import Modal from '../modal/modal'
 
 import './sideMenu.css'
@@ -28,6 +29,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
     const users = useSelector(RoomUsers)
     const room = useSelector(RoomInfo)
     const ShowModal = useSelector(showModal)
+    const token = useSelector(Token)
 
     const searchHandler = (term: string) => {
 
@@ -46,6 +48,9 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
     const getAllGroupUsersHandler = async () =>{
         
+        const request = await Axios.get(`/room/allusers/${room._id}`, { headers: { 'Authorization': `Bearer ${token}` } })
+        
+        // dispatch(saveRoomUsers(request.data.users))
         
         dispatch(ChangeModalShowing(true))
     }
@@ -128,7 +133,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
     return (
         <div>
-           {ShowModal?<Modal></Modal>:''}
+           {ShowModal?<Modal users={users}></Modal>:''}
 
             {menu}
         </div>

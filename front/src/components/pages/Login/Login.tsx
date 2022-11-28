@@ -9,7 +9,8 @@ import './Login.css'
 
 type Props = {
   title: string
-  signup?: boolean
+  signup?: string
+
 }
 
 
@@ -120,34 +121,63 @@ useEffect(() =>{
       <div className='screen'>
         <div className='form form_padding flex justify-content-between'>
       
-         {signup?<>
-         <div className='flex flex-column'>
+         {signup === "room" || signup==="user"?<>
+         <div className='flex flex-column form_padding'>
+           
+           
+           <div className='flex_1'>
             <img id='form_image' src={PrevieAvatar?`${PrevieAvatar}`:"./images/avatarImage.png"} alt="" />
-            <div className='flex flex_1 center justify-content-center'>
-              <label htmlFor="Userfile" className='btn btn-dark btn-lg'>Choose user avatar</label>
+           </div>
+            
+            <div className='flex  center justify-content-center'>
+              <label htmlFor="Userfile" className='btn btn-dark btn-lg flex_1'>Choose user avatar</label>
               <input type="file" name="file" id='Userfile' accept='image/*'  onChange={(e) => {imageUploadHandler(e)}} />
             </div>
           </div>
             </> :''
           }
-          <div>
+          <div className='flex flex-column justify-content-around flex_1'>
           <h1>{title}</h1>
-            <div>
-          {showError ? errorMessage : ''}
 
-          {signup? <div> <div>
+
+          {
+          signup === "room"?
+            <div className='flex_1 red'>
+            </div>
+          :''}
+
+          <div>
+          {showError ? errorMessage : ''}
+ 
+
+          {
+            signup === "user"? 
+            <> 
+            <div>
             <label htmlFor="username">Username</label>
             </div>
-            <input type="text" name="username" id='username' onChange={(e) => { SetUserName(e.target.value)}} /></div>:''}
-
+            <input type="text" name="username" id='username' onChange={(e) => { SetUserName(e.target.value)}} />
+            </>
+            :''
+            }
+            {signup === "user" || signup === undefined?
+              <>
+            <div>
             <label htmlFor="email">Email</label>
             </div>
               <input type="text" name="email" id='email' onChange={(e) => { SetEmail(e.target.value) }} />
             <div>
             <label htmlFor="password">Password</label>
             </div>
-            <input type="text" name="password" id='password' onChange={(e) => { SetPassword(e.target.value) }} />
-          {signup ?<div> 
+            <input type="text" name="password" id='password' onChange={(e) => { SetPassword(e.target.value) }} />   
+              </>
+            :''
+            }
+           
+           
+           {
+           signup === "user" ?
+           <div> 
             <div>
             <label htmlFor="password">RePassword</label>
             </div>
@@ -157,16 +187,28 @@ useEffect(() =>{
             </div>
             <input type="number" name="age" id='age' onChange={(e) => { SetAge(parseInt(e.target.value))}} />
                 </div>
-             : ''}
-            <div className='flex between'>
-            {/* <button className='btn btn-primary' onClick={signup? :LoginHandler}>Login</button> */}
+             : 
+             ''
+             }
+          <div className='flex between'>
+            {signup === "user" || signup === undefined?
+            <>
             <button className='btn btn-primary' onClick={signup?() =>{navigate('/')}:LoginHandler}>{signup? "Login page":"Login"}</button>
             <button className='btn btn-primary' onClick={signup?SignUpUserHandler:() =>{navigate('/signup')}}>{signup? "Sign up":"Sign up page"}</button>
+            </>
+          :''}
+            {signup === "room"?
+              <>
+              <button className='btn btn-primary'>create new room</button>
+              <button className='btn btn-primary' onClick={() => {navigate('/chat')}}>Cancel</button>
+              </>
+            :''}
           </div>
         </div>
         </div>
         
       </div>
+    </div>
     </div>
   )
 }

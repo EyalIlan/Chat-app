@@ -126,8 +126,6 @@ const Chat: React.FC<Props> = ({ socket }) => {
     dispatch(saveRoomInfo(newRoom))
     try {
       const { data } = await Axios.get(`/message?roomId=${newRoom._id}`, { headers: { 'Authorization': `Bearer ${token}` } })
-      console.log(data.messages);
-      console.log(data.users);
 
       dispatch(saveRooMessages(data.messages))
       dispatch(saveRoomUsers(data.users))
