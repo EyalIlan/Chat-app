@@ -12,6 +12,7 @@ interface initalStateTyep{
     }
     RoomMessages:MessageIF[]
     RoomUsers:UserIF[]
+    CreateNewRoomUsers:UserIF[]
 }
 
 
@@ -20,10 +21,11 @@ const initalState:initalStateTyep = {
         _id:'',
         name:'',
         image:'',
-        owner:''
+        owner:'',
     },
     RoomMessages:[],
-    RoomUsers:[]
+    RoomUsers:[],
+    CreateNewRoomUsers:[]
 }
 
 
@@ -55,16 +57,20 @@ const RoomSlice = createSlice({
         saveNewRoomMessage:(state,action) =>{
             state.RoomMessages.push(action.payload)
 
+        },
+        addUserToNewRoom:(state,action) =>{
+            state.CreateNewRoomUsers = action.payload
         }
 
 
     }
 })
 
-export const {saveRoomInfo,saveRoomUsers,saveRoomNewUser,removeRoomUser,saveRooMessages,saveNewRoomMessage}  = RoomSlice.actions
+export const {saveRoomInfo,saveRoomUsers,saveRoomNewUser,removeRoomUser,saveRooMessages,saveNewRoomMessage,addUserToNewRoom}  = RoomSlice.actions
 
 export const RoomInfo = (state:RootState) => state.room.roomInfo
 export const RoomUsers = (state:RootState) => state.room.RoomUsers
 export const RoomMessages = (state:RootState) => state.room.RoomMessages
+export const NewRoomUsers = (state:RootState) => state.room.CreateNewRoomUsers
 
 export default RoomSlice

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { UserData } from '../../../util/store/reducers/user'
 import { RoomInfo, RoomUsers } from '../../../util/store/reducers/room'
 import { SidemenuChange,SidemenuType, Showmenu } from '../../../util/store/reducers/feature'
+import { useNavigate } from 'react-router'
 
 type Props = {
 
@@ -16,7 +17,7 @@ const Navbar: React.FC<Props> = (props) => {
     const roomUsers = useSelector(RoomUsers)
 
     const showmenu = useSelector(Showmenu)
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const SideMeunHandler  = (type:string) =>{
@@ -65,7 +66,7 @@ const Navbar: React.FC<Props> = (props) => {
 
                             <div>
                                 <i className="fa-solid fa-ellipsis-vertical logo_cdn click"></i>
-                                <i className="fa-brands fa-rocketchat logo_cdn click"></i>
+                                <i className="fa-brands fa-rocketchat logo_cdn click" onClick={() => navigate('/newroom')}></i>
                                 {/* <img src="images/charmander.png" alt="" className='logo click' /> */}
                             </div>
 

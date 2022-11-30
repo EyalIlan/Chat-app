@@ -1,6 +1,6 @@
 const Room = require('../models/room')
 const Message = require('../models/message')
-
+const {cloudinary} = require ('../utils/common/Clodinary')
 
 
 const GetAllRooms = async(req,res) =>{
@@ -37,11 +37,24 @@ const GetAllRoomUsers = async (req,res) =>{
 
 
 const CreateRoom = async (req, res) => {
+    
+
+
+    const {userImage,name,ingroup} = req.body
+
+    console.log('in create room');
+
+    const responce = await cloudinary.uploader
+    .upload(userImage,{
+        upload_preset:'dev_setups'
+    })
 
     try{
         const createRoom = new Room({
-           ...req.body,
-           owner:req.user._id
+           name,
+           ingroup,
+           owner:req.user._id,
+           imageUrl:responce.url
         })
         await createRoom.save()
         res.status(200).json('room created')

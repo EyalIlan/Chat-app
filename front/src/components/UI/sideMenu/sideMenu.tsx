@@ -114,7 +114,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
                             </div>
                             <p>message</p>
                           </div>
-                          <img src={p.image?p.image:"/images/happiness.png"}  alt="image" />
+                          <img src={p.image?p.image:"/images/happiness.png"} className="avatar"  alt="image" />
                         </div>
                         <hr />
                       </div>

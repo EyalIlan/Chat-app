@@ -210,7 +210,8 @@ const Chat: React.FC<Props> = ({ socket }) => {
             <div className='col-md-4 bg-dark scroll'>
 
               {rooms.map((p: any, index: number) => {
-
+                  console.log(p);
+                  
                 return (
                   <div key={index}>
                     <div className='chat_userbox' onClick={() => { ChangeRoom(p) }}>
@@ -222,7 +223,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
                         <p>{Messages.length > 0 ? messageLengthHandler(Messages[Messages.length - 1].message, 60) : ' '}</p>
                       </div>
 
-                      <img src="/images/happiness.png"  alt="" />
+                      <img src={p.imageUrl?p.imageUrl:"/images/happiness.png"} className="avatar" alt="" />
                     </div>
                     <hr />
                   </div>

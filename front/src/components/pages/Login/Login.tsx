@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Axios from '../../../util/Axios/axios';
 import { useDispatch, useSelector } from 'react-redux'
-import { saveUser, saveToken } from '../../../util/store/reducers/user'
+import { saveUser, saveToken,Token } from '../../../util/store/reducers/user'
 import { showModal,ChangeModalShowing } from '../../../util/store/reducers/feature'
+import { NewRoomUsers } from '../../../util/store/reducers/room'
 import './Login.css'
 import { UserIF } from '../../../util/interface/interface';
 import Modal from '../../UI/modal/modal';
@@ -23,7 +24,8 @@ const Login: React.FC<Props> = ({ title, signup }) => {
   const dispatch = useDispatch()
 
   const ShowModal = useSelector(showModal)
-
+  const newRoomUsers = useSelector(NewRoomUsers)
+  const token = useSelector(Token)
 
   const [email, SetEmail] = useState('')
   const [password, SetPassword] = useState('')
@@ -124,7 +126,6 @@ const Login: React.FC<Props> = ({ title, signup }) => {
     if(users.length === 0){
         try{
           const request = await Axios.get('/user/allusers')
-          console.log(request.data);
           SetUsers(request.data)
         }
         catch(e){
@@ -136,6 +137,24 @@ const Login: React.FC<Props> = ({ title, signup }) => {
   }
 
 
+    const CreateNewRoom = async() =>{
+
+      let arr = []
+
+     arr = newRoomUsers.map(p =>{
+        return p._id
+      })
+
+      try{
+        Axios.post('/room/',{name:roomtitle,userImage:PrevieAvatar,ingroup:arr},{ headers: { 'Authorization': `Bearer ${token}`}})
+        navigate('/chat')
+      }
+      catch(e:any){
+        SetError(e.message)
+        SetShowError(true)
+      }
+    }
+
   let errorMessage = (
     <div className='p-3 mb-2 bg-danger text-white'>
       <p>
@@ -143,7 +162,6 @@ const Login: React.FC<Props> = ({ title, signup }) => {
       </p>
     </div>
   )
-    console.log(ShowModal);
     
   return (
     <div>
@@ -172,7 +190,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
 
             {
               signup === "room" ?
-                <div className='flex_1 '>
+                <div className='flex_1 mh_500  scroll'>
                   <div className='flex justify-content-between'>
                     <label htmlFor="newRoom"><h4>Room Title </h4></label>
                     <button className='btn btn-primary' onClick={openModalUsersHandler}>add users</button>
@@ -181,9 +199,17 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                     <input type="text" name="newRoom" id='newRoom' className='flex_1' onChange={(e) => { SetRoomTitle(e.target.value) }} />
                   </div>
                   
-                  <div className='container'>
-                      <div className='row'>
-                            {}
+                  <div>
+                      <div className='grid grid_3 '>
+              
+                              {
+                                newRoomUsers.map((p,index) =>{
+                                    return <div key={index} className="flex flex-column">
+                                              <p>{p.name}</p>
+                                              <img src={p.image} alt="user images" className='logo' />
+                                          </div>
+                                })
+                              }
                       </div>
                   </div>
                 </div>
@@ -242,7 +268,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                   : ''}
                 {signup === "room" ?
                   <>
-                    <button className='btn btn-primary'>create new room</button>
+                    <button className='btn btn-primary' onClick={CreateNewRoom}>create new room</button>
                     <button className='btn btn-primary' onClick={() => { navigate('/chat') }}>Cancel</button>
                   </>
                   : ''}

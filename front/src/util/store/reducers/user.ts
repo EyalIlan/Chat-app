@@ -9,6 +9,7 @@ interface initalStateTyep{
 
 const initalState:initalStateTyep = {
     value:{
+        _id:'',
         name:'',
         email:'',
         age:0,
