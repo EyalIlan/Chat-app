@@ -36,6 +36,9 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
         SetSearchTerm(term)
 
 
+        console.log(room);
+        
+
         if(term !== ''){
             
                     let FilterMessage = messages.filter(p => {
@@ -95,7 +98,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
         <div className='box'>
             <div className='flex flex-column justify-content-center align-items-center'>
-            <img className='box_avatar_image' src="/images/avatarImage.png" alt="" />
+            <img className='box_avatar_image'  src={room.imageUrl?room.imageUrl:"/images/avatarImage.png"} alt="" />
             <h2>{room.name} </h2>
             <span className='medium_text'><p> קבוצה- גודל משתתפים</p></span>
             </div>

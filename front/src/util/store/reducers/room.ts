@@ -7,7 +7,7 @@ interface initalStateTyep{
     roomInfo:{
         _id:string
         name:string,
-        image:string,
+        imageUrl:string,
         owner:string
     }
     RoomMessages:MessageIF[]
@@ -20,7 +20,7 @@ const initalState:initalStateTyep = {
     roomInfo:{
         _id:'',
         name:'',
-        image:'',
+        imageUrl:'',
         owner:'',
     },
     RoomMessages:[],

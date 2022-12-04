@@ -158,6 +158,10 @@ const Chat: React.FC<Props> = ({ socket }) => {
 
   }
 
+
+
+
+
   return (
     <div>
 
@@ -210,7 +214,6 @@ const Chat: React.FC<Props> = ({ socket }) => {
             <div className='col-md-4 bg-dark scroll'>
 
               {rooms.map((p: any, index: number) => {
-                  console.log(p);
                   
                 return (
                   <div key={index}>

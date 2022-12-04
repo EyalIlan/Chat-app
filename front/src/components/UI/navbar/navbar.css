@@ -1,6 +1,7 @@
 
 #navbar{
     height: 12vh;
+    overflow: hidden;
     /* padding: 10px; */
 }
 
@@ -26,9 +27,6 @@
 }
 
 
-.message_box{
-    text-align: right;
-}
 
 
 .border_right{
@@ -37,4 +35,16 @@
 
 .click{
     cursor: pointer;
+}
+
+
+/* state change the max width of the name that will be display */
+
+.user_name_box_small{
+    max-width: 300px;
+    overflow: hidden;
+}
+.user_name_box_big{
+    max-width: 700px;
+    overflow: hidden;
 }

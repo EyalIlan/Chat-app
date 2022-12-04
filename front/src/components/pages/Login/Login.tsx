@@ -179,7 +179,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
 
               <div className='flex  center justify-content-center'>
                 <label htmlFor="Userfile" className='btn btn-dark btn-lg flex_1'>Choose user avatar</label>
-                <input type="file" name="file" id='Userfile' accept='image/*' onChange={(e) => { imageUploadHandler(e) }} />
+                <input type="file" name="file" id='Userfile' accept='image/*' className='form_input' onChange={(e) => { imageUploadHandler(e) }} />
               </div>
             </div>
           </> : ''
@@ -196,7 +196,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                     <button className='btn btn-primary' onClick={openModalUsersHandler}>add users</button>
                   </div >
                   <div className='flex'>
-                    <input type="text" name="newRoom" id='newRoom' className='flex_1' onChange={(e) => { SetRoomTitle(e.target.value) }} />
+                    <input type="text" name="newRoom" id='newRoom' className='flex_1 form_input' placeholder='Room Title' onChange={(e) => { SetRoomTitle(e.target.value) }} />
                   </div>
                   
                   <div>
@@ -225,7 +225,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                     <div>
                       <label htmlFor="username">Username</label>
                     </div>
-                    <input type="text" name="username" id='username' onChange={(e) => { SetUserName(e.target.value) }} />
+                    <input type="text" name="username" id='username' className='form_input' placeholder='Username' onChange={(e) => { SetUserName(e.target.value) }} />
                   </>
                   : ''
               }
@@ -234,11 +234,11 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                   <div>
                     <label htmlFor="email">Email</label>
                   </div>
-                  <input type="text" name="email" id='email' onChange={(e) => { SetEmail(e.target.value) }} />
+                  <input type="text" name="email" id='email' className='form_input' placeholder='email' onChange={(e) => { SetEmail(e.target.value) }} />
                   <div>
                     <label htmlFor="password">Password</label>
                   </div>
-                  <input type="text" name="password" id='password' onChange={(e) => { SetPassword(e.target.value) }} />
+                  <input type="text" name="password" id='password' className='form_input' placeholder='password' onChange={(e) => { SetPassword(e.target.value) }} />
                 </>
                 : ''
               }
@@ -250,11 +250,11 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                     <div>
                       <label htmlFor="password">RePassword</label>
                     </div>
-                    <input type="text" name="password" id='password' onChange={(e) => { SetRePassword(e.target.value) }} />
+                    <input type="text" name="password" id='password' className='form_input' placeholder='RePassword' onChange={(e) => { SetRePassword(e.target.value) }} />
                     <div>
                       <label htmlFor="age">Age</label>
                     </div>
-                    <input type="number" name="age" id='age' onChange={(e) => { SetAge(parseInt(e.target.value)) }} />
+                    <input type="number" name="age" id='age' className='form_input' placeholder='Age' onChange={(e) => { SetAge(parseInt(e.target.value)) }} />
                   </div>
                   :
                   ''

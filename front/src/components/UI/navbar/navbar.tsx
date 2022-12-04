@@ -43,20 +43,22 @@ const Navbar: React.FC<Props> = (props) => {
                         }
 
                         <div className='col-md flex center between border_right'>
+
                             <div className='flex center'>
                                 <i className="fa-solid fa-ellipsis-vertical logo_cdn click" onClick={()=>{SideMeunHandler('detail')}}></i>
                                 <i className="fa-solid fa-magnifying-glass logo_cdn click" onClick={()=>{SideMeunHandler('search')}}></i>
                             </div>
-                            <div className='flex center'>
-                                <div className='message_box'>
+                            <div className='flex center user_name_box_small'>
+                                <div className='red user_name_box user_name_box_small'>
                                     <h3>{room.name}</h3>
-                                    <div className='flex'>
+                                    <div className='red flex'>
                                         {roomUsers.length > 0 ? roomUsers.map((p, index) => {
                                             return <p key={index}>,{p.name}</p>
                                         }) : <p>group users</p>}
+                                     
                                     </div>
                                 </div>
-                                <img src="images/defaultuser.png" alt="" className='avatar' />
+                                <img  src={room.imageUrl?room.imageUrl:"images/defaultuser.png"} alt="" className='avatar' />
                             </div>
 
                         </div>
