@@ -8,7 +8,7 @@ import { NewRoomUsers } from '../../../util/store/reducers/room'
 import './Login.css'
 import { UserIF } from '../../../util/interface/interface';
 import Modal from '../../UI/modal/modal';
-
+import {checkStringSize} from '../../../util/Functions/text'
 
 type Props = {
   title: string
@@ -190,7 +190,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
 
             {
               signup === "room" ?
-                <div className='flex_1 mh_500  scroll'>
+                <div className='flex_1   scroll'>
                   <div className='flex justify-content-between'>
                     <label htmlFor="newRoom"><h4>Room Title </h4></label>
                     <button className='btn btn-primary' onClick={openModalUsersHandler}>add users</button>
@@ -200,16 +200,18 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                   </div>
                   
                   <div>
-                      <div className='grid grid_3 '>
+                      <div className='grid grid_3 mh_500 scroll'>
               
                               {
                                 newRoomUsers.map((p,index) =>{
                                     return <div key={index} className="flex flex-column">
-                                              <p>{p.name}</p>
+                                              <p>{checkStringSize(p.name,7)}</p>
                                               <img src={p.image} alt="user images" className='logo' />
                                           </div>
                                 })
                               }
+                            
+                              
                       </div>
                   </div>
                 </div>
