@@ -165,27 +165,27 @@ const Login: React.FC<Props> = ({ title, signup }) => {
     
   return (
     <div>
-      <div className='screen'>
+      <div className='screen flex justify-content-center align-items-center'>
        {ShowModal? <Modal users={users}></Modal>:''}
-        <div className='form form_padding flex justify-content-between'>
+        <div className='form form_padding responsive justify-content-between '>
 
           {signup === "room" || signup === "user" ? <>
-            <div className='flex flex-column form_padding'>
+            <div className=' flex-column form_padding'>
 
 
               <div className='flex_1'>
                 <img id='form_image' src={PrevieAvatar ? `${PrevieAvatar}` : "./images/avatarImage.png"} alt="" />
               </div>
 
-              <div className='flex  center justify-content-center'>
+              <div className='responsive  center justify-content-center'>
                 <label htmlFor="Userfile" className='btn btn-dark btn-lg flex_1'>Choose user avatar</label>
-                <input type="file" name="file" id='Userfile' accept='image/*' className='form_input' onChange={(e) => { imageUploadHandler(e) }} />
+                <input type="file" name="file" id='Userfile' accept='image/*' className='form_input ' onChange={(e) => { imageUploadHandler(e) }} />
               </div>
             </div>
           </> : ''
           }
-          <div className='flex flex-column justify-content-around flex_1'>
-            <h1>{title}</h1>
+          <div className='responsive flex-column justify-content-around flex_1'>
+            <h1 className='mainTitle'>{title}</h1>
 
 
             {
@@ -230,16 +230,16 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                   : ''
               }
               {signup === "user" || signup === undefined ?
-                <>
+                <div className='spacing'>
                   <div>
                     <label htmlFor="email">Email</label>
                   </div>
-                  <input type="text" name="email" id='email' className='form_input' placeholder='email' onChange={(e) => { SetEmail(e.target.value) }} />
+                  <input  type="text" name="email" id='email' className='form_input medium_text' placeholder='email' onChange={(e) => { SetEmail(e.target.value) }} />
                   <div>
                     <label htmlFor="password">Password</label>
                   </div>
                   <input type="text" name="password" id='password' className='form_input' placeholder='password' onChange={(e) => { SetPassword(e.target.value) }} />
-                </>
+                </div>
                 : ''
               }
 
@@ -259,20 +259,18 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                   :
                   ''
               }
-              <div className='flex between'>
                 {signup === "user" || signup === undefined ?
-                  <>
+                  <div className='spacing flex between'>
                     <button className='btn btn-primary' onClick={signup ? () => { navigate('/') } : LoginHandler}>{signup ? "Login page" : "Login"}</button>
                     <button className='btn btn-primary' onClick={signup ? SignUpUserHandler : () => { navigate('/signup') }}>{signup ? "Sign up" : "Sign up page"}</button>
-                  </>
+                  </div>
                   : ''}
                 {signup === "room" ?
-                  <>
+                  <div className='spacing flex between'>
                     <button className='btn btn-primary' onClick={CreateNewRoom}>create new room</button>
                     <button className='btn btn-primary' onClick={() => { navigate('/chat') }}>Cancel</button>
-                  </>
+                  </div>
                   : ''}
-              </div>
             </div>
           </div>
 

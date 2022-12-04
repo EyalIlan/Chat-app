@@ -9,7 +9,7 @@
 }
 
 h1,h2,h3,h4,h5,h6,p{
-  margin:   5px 0;
+  margin:   10px 0;
   padding: 0;
 }
 
@@ -107,9 +107,14 @@ hr{
   color: rgb(0, 102, 254);
 }
 
+.responsive{
+  display: flex;
+}
 .flex{
   display: flex;
 }
+
+
 
 .flex_1{
   flex: 1 1 auto;
@@ -188,3 +193,128 @@ hr{
   max-height: 88vh;
 }
 
+
+.screen{
+  height: 100vh;
+  /* background-color: red; */
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
+  /* border-radius: 20px; */
+  /* border-radius: 20px; */
+}
+
+
+/* Cleaning to responsive */
+
+
+.form{
+  /* align-items: center; */
+  box-shadow: 5px 10px black;
+  min-height: 350px;
+ 
+  border: 1px solid black;
+  position: relative;
+}
+
+.form_padding{
+  padding: 20px 50px;
+}
+
+
+
+#form_image{
+
+ height: 500px; 
+ width: 500px;
+}
+
+.form::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.8;
+  background-color: blue;
+}
+
+.form input{
+  margin: 7px 0;
+  /* border-radius: 5px; */
+  /* padding: 0 15px; */
+  /* color: blue; */
+}
+
+
+/* Size */
+
+.mainTitle{
+  font-size: 45px;
+}
+
+
+
+.medium_text{
+  font-size: 18px;
+}
+
+
+
+
+/*  */
+
+.spacing{
+  margin: 20px 0;
+}
+
+
+.form h1{
+  text-align: center;
+}
+
+
+
+.form_input{
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.form input{
+  width: 100%;
+  font-size: 18px;
+}
+
+
+@media(max-width:1000px){
+
+.responsive{
+  display: block;
+}
+
+.form{
+  /* align-items: center; */
+  box-shadow: 2px 5px black;
+  /* text-align: center; */
+  max-height: 100vh;
+  border: 1px solid black;
+  position: relative;
+  overflow: auto;
+  background-color: blue;
+}
+
+.form_padding{
+   padding: 20px 28px;
+}
+
+#form_image{
+  width: 200px;
+  height: 200px;
+}
+
+
+}

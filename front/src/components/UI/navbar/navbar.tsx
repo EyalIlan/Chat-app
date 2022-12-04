@@ -49,9 +49,9 @@ const Navbar: React.FC<Props> = (props) => {
                                 <i className="fa-solid fa-magnifying-glass logo_cdn click" onClick={()=>{SideMeunHandler('search')}}></i>
                             </div>
                             <div className='flex center user_name_box_small'>
-                                <div className='red user_name_box user_name_box_small'>
+                                <div className=' user_name_box user_name_box_small'>
                                     <h3>{room.name}</h3>
-                                    <div className='red flex'>
+                                    <div className='flex'>
                                         {roomUsers.length > 0 ? roomUsers.map((p, index) => {
                                             return <p key={index}>,{p.name}</p>
                                         }) : <p>group users</p>}
