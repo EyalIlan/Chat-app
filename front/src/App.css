@@ -306,6 +306,8 @@ hr{
   box-shadow: 2px 5px black;
   /* text-align: center; */
   max-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   border: 1px solid black;
   position: relative;
   overflow: auto;

@@ -23,7 +23,7 @@ function App() {
           <Route path='/' element={<Login title='Login'/>}></Route>
           <Route path='/chat' element={<Chat socket ={socket}/>}></Route>
           <Route path='/signup' element={<Login title='Sign up' signup={"user"}/>}></Route>
-          <Route path='/newroom' element={<Login title='create new room' signup={"room"}/>}></Route>
+          <Route path='/newroom' element={<Login title='New Room' signup={"room"}/>}></Route>
           <Route path='/*' element={<Page404 />}></Route>
       </Routes>
     </div>
