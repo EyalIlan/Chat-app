@@ -200,7 +200,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                   </div>
                   
                   <div>
-                      <div className='grid grid_3 mh_500 scroll'>
+                      <div className='grid grid_3 mh_400 scroll'>
               
                               {
                                 newRoomUsers.map((p,index) =>{
@@ -209,9 +209,7 @@ const Login: React.FC<Props> = ({ title, signup }) => {
                                               <img src={p.image} alt="user images" className='logo' />
                                           </div>
                                 })
-                              }
-                            
-                              
+                              } 
                       </div>
                   </div>
                 </div>

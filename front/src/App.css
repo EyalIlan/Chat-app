@@ -186,8 +186,8 @@ hr{
 
 /* max-height for scroll */
 
-.mh_500{
-  max-height: 500px;
+.mh_400{
+  max-height: 300px;
   max-width: 300px;
 }
 
@@ -295,8 +295,12 @@ hr{
 }
 
 
-@media(max-width:1000px){
 
+@media(max-width:1000px){
+  .responsive_hidden{
+    display: none;
+  }
+  
 .responsive{
   display: block;
 }

@@ -211,7 +211,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
               </div>
 
             </div>
-            <div className='col-md-4 bg-dark scroll'>
+            <div className='col-md-4 bg-dark scroll responsive_hidden'>
 
               {rooms.map((p: any, index: number) => {
                   

@@ -3,7 +3,7 @@ import './navbar.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { UserData } from '../../../util/store/reducers/user'
 import { RoomInfo, RoomUsers } from '../../../util/store/reducers/room'
-import { SidemenuChange,SidemenuType, Showmenu } from '../../../util/store/reducers/feature'
+import { SidemenuChange,SidemenuType, Showmenu,PhoneScreen,changeScreenPhone } from '../../../util/store/reducers/feature'
 import { useNavigate } from 'react-router'
 
 type Props = {
@@ -15,6 +15,7 @@ const Navbar: React.FC<Props> = (props) => {
     const user = useSelector(UserData)
     const room = useSelector(RoomInfo)
     const roomUsers = useSelector(RoomUsers)
+    const phoneScreen = useSelector(PhoneScreen)
 
     const showmenu = useSelector(Showmenu)
     const navigate = useNavigate()
@@ -34,7 +35,7 @@ const Navbar: React.FC<Props> = (props) => {
                     <div className='row'>
 
 
-                        {showmenu ? <div className='col-md-4 flex  border_right'>
+                        {showmenu ? <div className='col-md flex  border_right'>
 
 
 
@@ -42,7 +43,7 @@ const Navbar: React.FC<Props> = (props) => {
                             : ''
                         }
 
-                        <div className='col-md flex center between border_right'>
+                        <div className={`col-md  ${phoneScreen === 'chat'?'':'responsive_hidden'} flex center between border_right`}>
 
                             <div className='flex center'>
                                 <i className="fa-solid fa-ellipsis-vertical logo_cdn click" onClick={()=>{SideMeunHandler('detail')}}></i>
@@ -63,7 +64,7 @@ const Navbar: React.FC<Props> = (props) => {
 
                         </div>
 
-                        <div className='menu_space col-md-4 flex center between'>
+                        <div className= {`menu_space  ${phoneScreen === 'users'?'col-md':'responsive_hidden col-md-4'}   flex center between`}>
 
 
                             <div>
