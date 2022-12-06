@@ -23,9 +23,9 @@ const FeatureSlice = createSlice({
     initialState:initialState,
     reducers:{
 
-        SidemenuChange:(state) =>{
+        SidemenuChange:(state,action) =>{
             
-            state.Showmenu = !state.Showmenu
+            state.Showmenu = action.payload
 
         },
 

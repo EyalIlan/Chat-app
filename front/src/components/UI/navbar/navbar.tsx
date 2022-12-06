@@ -22,8 +22,13 @@ const Navbar: React.FC<Props> = (props) => {
     const dispatch = useDispatch()
 
     const SideMeunHandler  = (type:string) =>{
-        dispatch(SidemenuChange()) 
+        dispatch(changeScreenPhone('menu'))
+        dispatch(SidemenuChange(true)) 
         dispatch(SidemenuType(type))
+    }
+    const closeMenuHandelr = ()=>{
+        dispatch(changeScreenPhone('chat'))
+        dispatch(SidemenuChange(false)) 
     }
 
 
@@ -37,7 +42,11 @@ const Navbar: React.FC<Props> = (props) => {
 
                         {showmenu ? <div className='col-md flex  border_right'>
 
+                        <div className='flex center'>
+                            <i className="fa-solid fa-ellipsis-vertical  logo_cdn click" onClick={closeMenuHandelr}></i>
 
+                        </div>
+                        
 
                         </div>
                             : ''

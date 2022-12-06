@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { Token, UserData } from '../../../util/store/reducers/user';
 import { RoomMessages, RoomInfo, saveRooMessages, saveNewRoomMessage, saveRoomInfo, saveRoomUsers } from '../../../util/store/reducers/room';
-import { Showmenu } from '../../../util/store/reducers/feature'
+import { Showmenu,PhoneScreen,changeScreenPhone } from '../../../util/store/reducers/feature'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
@@ -38,7 +38,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
   const room = useSelector(RoomInfo)
   const Messages = useSelector(RoomMessages)
   const showMenu = useSelector(Showmenu)
-
+  const phoneScreen = useSelector(PhoneScreen)
 
 
   useEffect(() => {
@@ -119,7 +119,6 @@ const Chat: React.FC<Props> = ({ socket }) => {
   const ChangeRoom = async (newRoom: any) => {
 
 
-    console.log(newRoom);
 
 
     socket.emit('join_room', { roomId: newRoom._id, oldRoom: room._id, username: user.name })
@@ -129,7 +128,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
 
       dispatch(saveRooMessages(data.messages))
       dispatch(saveRoomUsers(data.users))
-
+      dispatch(changeScreenPhone('chat'))
     }
     catch (e) {
 
@@ -172,7 +171,9 @@ const Chat: React.FC<Props> = ({ socket }) => {
         <div className='container'>
           <div className='row' id='chat_height'>
 
-            {showMenu ? <div className='col-md-4 bg-dark  scroll border_right'>
+           
+              
+            {showMenu ? <div className={`col-md-4 bg-dark ${phoneScreen === 'menu'?'':'responsive_hidden'} scroll border_right`}>
               
                   <SideMenu></SideMenu>
 
@@ -180,8 +181,9 @@ const Chat: React.FC<Props> = ({ socket }) => {
             </div>
               : ''
             }
+           
 
-            <div className='col-md flex  flex-column border_right'>
+            <div className={`col-md flex  ${phoneScreen === 'chat'?'':'responsive_hidden'} flex-column border_right`}>
               <div id='chat_content' className='flex_1'>
                 <div>
                   {Messages.map((p, index) => {
@@ -204,14 +206,14 @@ const Chat: React.FC<Props> = ({ socket }) => {
               </div>
 
               <div className='flex around center lower_bar'>
-                <img src="/images/defaultuser.png" className='logo click' alt="" />
+                <img src="/images/defaultuser.png" className='logo click pad' alt="" />
                 <input type="text" className='input' placeholder='type message' value={message} onChange={(e) => { SetMessage(e.target.value) }} />
-                <button className='btn btn-outline-dark btn-lg' onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
+                <button className='btn btn-outline-dark btn-lg pad' onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
                 <i className="fa-regular fa-face-smile logo_cdn click"></i>
               </div>
 
             </div>
-            <div className='col-md-4 bg-dark scroll responsive_hidden'>
+            <div className={`col-md-4 bg-dark ${phoneScreen === 'users'?'':'responsive_hidden'} scroll `}>
 
               {rooms.map((p: any, index: number) => {
                   

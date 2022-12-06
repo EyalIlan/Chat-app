@@ -65,7 +65,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
         menu = (
             <div >
 
-                <div className='message'>
+                <div className='message flex center'>
                     <input type="text" className='input' value={searchTerm} placeholder='search' onChange={(e) => { searchHandler(e.target.value) }} />
                 </div>
                 <div>
