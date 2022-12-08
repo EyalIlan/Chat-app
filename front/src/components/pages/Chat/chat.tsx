@@ -166,10 +166,10 @@ const Chat: React.FC<Props> = ({ socket }) => {
 
 
 
-      <div className='chat'>
-        <Navbar></Navbar>
-        <div className='container'>
-          <div className='row' id='chat_height'>
+      <div className='chat  flex flex-column'>
+        <Navbar ></Navbar>
+        <div className='container flex flex_1'>
+          <div className='row flex_1'>
 
            
               
@@ -191,7 +191,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
                       <div key={index} className={p.name === user.name ? 'flex message_container left' : 'flex message_container right'}>
                         <div className='message'>
                           <div>
-                            <h5>{p.name}</h5>
+                            <h5 >{p.name}</h5>
                             <h5>{p.time}</h5>
                           </div>
                           <p>
@@ -206,14 +206,16 @@ const Chat: React.FC<Props> = ({ socket }) => {
               </div>
 
               <div className='flex around center lower_bar'>
-                <img src="/images/defaultuser.png" className='logo click pad' alt="" />
-                <input type="text" className='input' placeholder='type message' value={message} onChange={(e) => { SetMessage(e.target.value) }} />
-                <button className='btn btn-outline-dark btn-lg pad' onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
-                <i className="fa-regular fa-face-smile logo_cdn click"></i>
+                {/* <img src="/images/defaultuser.png" className='logo click pad' alt="" /> */}
+                <div className='flex around center input'>
+                  <input type="text" className='input' placeholder='type message' value={message} onChange={(e) => { SetMessage(e.target.value) }} />
+                  <button  onClick={SendMessageHandler} disabled={sendButton}> <i className="fa-solid fa-paper-plane logo_cdn click"></i></button>
+                </div>
+                {/* <i className="fa-regular fa-face-smile logo_cdn click"></i> */}
               </div>
 
             </div>
-            <div className={`col-md-4 bg-dark ${phoneScreen === 'users'?'':'responsive_hidden'} scroll `}>
+            <div className={`col-md-4 bg-dark ${phoneScreen === 'users'?'':'responsive_hidden'} scroll`}>
 
               {rooms.map((p: any, index: number) => {
                   

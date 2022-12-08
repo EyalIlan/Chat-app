@@ -1,6 +1,6 @@
 
 #navbar{
-    height: 12vh;
+    /* min-height: 18vh; */
     overflow: hidden;
     /* padding: 10px; */
 }
@@ -43,10 +43,13 @@
 /* state change the max width of the name that will be display */
 
 .user_name_box_small{
-    max-width: 400px;
-    overflow: hidden;
+    max-width: 200px;
 }
 .user_name_box_big{
     max-width: 700px;
     overflow: hidden;
+}
+
+.navbar_icons{
+    padding: 10px;
 }

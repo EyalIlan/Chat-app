@@ -72,7 +72,9 @@
     font-weight: bold;
 }
 
-
+.message h5+h5{
+    margin-left: 10px;
+}
 
 .message > div{
     display: flex;
@@ -109,7 +111,7 @@
 #chat_content{
     /* margin: auto; */
     /* width: 85%; */
-    max-height: 78vh;
+    /* max-height: 78vh; */
     overflow: auto;
 }
 
@@ -118,9 +120,9 @@
     width: 85%;
 }
 
-#chat_height{
-    min-height:90vh
-}
+/* #chat_height{
+    min-height:91vh
+} */
 
 .lower_bar{
     background-color: rgb(14, 68, 248);
@@ -133,13 +135,22 @@
 .input{
     color: white;
     border-radius: 10px;
-    margin: auto;
-    padding: 6px 20px;
+    padding: 6px 10px;
     font-size: 20px;
     background-color: blue;
     border: none;
-   width: 90%;
+   width: 100%;
 }
+
+.input button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-radius: 50%;
+}
+
+
+
 
 .input::placeholder{
     color: rgb(199, 195, 188);

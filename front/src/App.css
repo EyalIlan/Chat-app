@@ -8,10 +8,10 @@
   /* box-sizing: border-box; */
 }
 
-h1,h2,h3,h4,h5,h6,p{
+/* h1,h2,h3,h4,h5,h6,p{
   margin-bottom:   20px 0;
   padding: 0;
-}
+} */
 
 p{
   margin:  0;
@@ -117,7 +117,7 @@ hr{
 
 
 .flex_1{
-  flex: 1 1 auto;
+  flex: 1;
   flex-wrap: wrap;
 }
 
@@ -142,6 +142,10 @@ hr{
   grid-template-columns: repeat(3,1fr);
 }
 
+
+.menu_max_height{
+  max-height: 80vh;
+}
 
 .btn_web{
   cursor: pointer;
@@ -191,9 +195,7 @@ hr{
   max-width: 300px;
 }
 
-.col-md-4{
-  max-height: 88vh;
-}
+
 
 
 .screen{
@@ -250,7 +252,7 @@ hr{
   /* color: blue; */
 }
 
-.form h1,h2,h3,h4,h5,h6{
+.form h1,.form h2,.form h3,.form h4,.form h5,.form h6{
   margin-bottom: 20px;
 }
 

@@ -135,7 +135,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
 
     return (
-        <div>
+        <div className='menu_max_height'>
            {ShowModal?<Modal users={users}></Modal>:''}
 
             {menu}
