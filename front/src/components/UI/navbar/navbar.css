@@ -43,7 +43,7 @@
 /* state change the max width of the name that will be display */
 
 .user_name_box_small{
-    max-width: 200px;
+    max-width: 400px;
 }
 .user_name_box_big{
     max-width: 700px;
@@ -52,4 +52,13 @@
 
 .navbar_icons{
     padding: 10px;
+}
+
+
+@media(min-width:1000px) {
+    
+    .user_name_box_small{
+        max-width: 200px;
+    }
+
 }

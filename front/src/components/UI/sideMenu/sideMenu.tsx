@@ -48,7 +48,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
         }
 
     }
-
+    
     const getAllGroupUsersHandler = async () =>{
         
         const request = await Axios.get(`/room/allusers/${room._id}`, { headers: { 'Authorization': `Bearer ${token}` } })
@@ -56,6 +56,10 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
         // dispatch(saveRoomUsers(request.data.users))
         
         dispatch(ChangeModalShowing(true))
+    }
+
+    const ExitGroupHandler = () =>{
+
     }
 
 
@@ -107,6 +111,18 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
         <div className='box scroll'>
 
+
+        <div className='chat_userbox'>
+                          <div>
+                            <div >
+                              <h5>Add users</h5>
+                            </div>
+                            
+                          </div>
+                          <img src="/images/happiness.png" className="avatar"  alt="image" />
+                        </div>
+                        <hr />
+
                 {users.map((p,index) =>{
                     return (
                         <div key={index}>
@@ -127,6 +143,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
 
         <div className='box flex justify-content-center'>
             <button className='btn btn-primary' onClick={getAllGroupUsersHandler}>show all users</button>
+            <button className='btn btn-danger' onClick={ExitGroupHandler}>Quit from group</button>
 
         </div>
         </div>  

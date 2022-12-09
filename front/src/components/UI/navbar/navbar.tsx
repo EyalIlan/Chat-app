@@ -73,7 +73,7 @@ const Navbar: React.FC<Props> = (props) => {
                                                     <h3>{room.name}</h3>
 
                                                 </div>
-                                                <div className='flex justify-content-end  user_name_box_small scroll'>
+                                                <div className={`flex justify-content-end  ${showmenu?'user_name_box_small':'user_name_box_big'}  scroll`}>
                                                     {roomUsers.length > 0 ? roomUsers.map((p, index) => {
                                                         return <p key={index}>,{p.name}</p>
                                                     }) : <p>group users</p>}
