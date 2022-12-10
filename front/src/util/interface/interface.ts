@@ -23,3 +23,13 @@ export interface MessageIF{
 
     time:string
 }
+
+export interface RoomIF{
+
+    imageUrl:string
+
+    ingroup:string[]
+
+    name:string
+
+}

@@ -73,10 +73,11 @@ const Navbar: React.FC<Props> = (props) => {
                                                     <h3>{room.name}</h3>
 
                                                 </div>
-                                                <div className={`flex justify-content-end  ${showmenu?'user_name_box_small':'user_name_box_big'}  scroll`}>
+                                                <div className={`flex justify-content-end flex-wrap`}>
                                                     {roomUsers.length > 0 ? roomUsers.map((p, index) => {
-                                                        return <p key={index}>,{p.name}</p>
-                                                    }) : <p>group users</p>}
+                                                            return <p key={index}>,{p.name}</p>       
+                                                    }) 
+                                                    : <p>group users</p>}
                                                 </div>
                                             </div>
                                             <img src={room.imageUrl ? room.imageUrl : "images/defaultuser.png"} alt="" className='avatar' />
@@ -93,7 +94,7 @@ const Navbar: React.FC<Props> = (props) => {
 
 
 
-                        <div className={`menu_space  ${phoneScreen === 'users' ? 'col-md' : 'responsive_hidden col-md-4'}   flex navbar_icons between`}>
+                        <div className={`menu_space  ${phoneScreen === 'users' ? 'col-md' : 'responsive_hidden'} col-md-4  flex navbar_icons between`}>
 
 
                             <div>

@@ -1,9 +1,10 @@
 import Axios from '../../../util/Axios/axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
-import { Token, UserData } from '../../../util/store/reducers/user';
+import { Token, UserData,UserRooms,saveUserRooms } from '../../../util/store/reducers/user';
 import { RoomMessages, RoomInfo, saveRooMessages, saveNewRoomMessage, saveRoomInfo, saveRoomUsers } from '../../../util/store/reducers/room';
 import { Showmenu,PhoneScreen,changeScreenPhone } from '../../../util/store/reducers/feature'
+import {RoomIF} from '../../../util/interface/interface'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
@@ -30,11 +31,14 @@ const Chat: React.FC<Props> = ({ socket }) => {
 
   const [message, SetMessage] = useState('')
   const [sendButton, SetSendButton] = useState(false)
-  const [rooms, Setrooms] = useState([])
+
 
   //  Use SELECTOR 
   const user = useSelector(UserData)
   const token = useSelector(Token)
+  const userRooms = useSelector(UserRooms)
+
+
   const room = useSelector(RoomInfo)
   const Messages = useSelector(RoomMessages)
   const showMenu = useSelector(Showmenu)
@@ -66,7 +70,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
       try {
         const { data } = await Axios.get('/room/rooms', { headers: { 'Authorization': `Bearer ${token}` } })
 
-        Setrooms(data)
+        dispatch(saveUserRooms(data))
       }
       catch (e) {
         console.log(e);
@@ -217,8 +221,7 @@ const Chat: React.FC<Props> = ({ socket }) => {
             </div>
             <div className={`col-md-4 bg-dark ${phoneScreen === 'users'?'':'responsive_hidden'} scroll`}>
 
-              {rooms.map((p: any, index: number) => {
-                  
+              {userRooms.map((p: RoomIF,index: number) => {
                 return (
                   <div key={index}>
                     <div className='chat_userbox' onClick={() => { ChangeRoom(p) }}>

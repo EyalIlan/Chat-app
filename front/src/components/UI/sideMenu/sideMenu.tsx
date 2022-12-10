@@ -51,7 +51,7 @@ const SideMenu: React.FC<Props> = ({ MenuType }) => {
     
     const getAllGroupUsersHandler = async () =>{
         
-        const request = await Axios.get(`/room/allusers/${room._id}`, { headers: { 'Authorization': `Bearer ${token}` } })
+        await Axios.get(`/room/allusers/${room._id}`, { headers: { 'Authorization': `Bearer ${token}`}})
         
         // dispatch(saveRoomUsers(request.data.users))
         

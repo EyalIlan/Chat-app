@@ -1,10 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {UserIF} from '../../interface/interface'
+import {UserIF,RoomIF} from '../../interface/interface'
 import {RootState} from '../store'
 interface initalStateTyep{
 
     value:UserIF
     token:string | null
+    userRooms:RoomIF[]
 }
 
 const initalState:initalStateTyep = {
@@ -15,7 +16,8 @@ const initalState:initalStateTyep = {
         age:0,
         image:''
     },
-    token: null
+    token: null,
+    userRooms:[]
 }
 
 const userSlice = createSlice({
@@ -27,14 +29,18 @@ const userSlice = createSlice({
         },
         saveToken:(state,action) =>{
             state.token = action.payload
+        },
+        saveUserRooms: (state,action) =>{
+            state.userRooms = action.payload
         }
     }   
 })
 
 
-export const {saveUser,saveToken} = userSlice.actions
+export const {saveUser,saveToken,saveUserRooms} = userSlice.actions
 
 export const UserData = (state:RootState) => state.user.value
 export const Token = (state:RootState) => state.user.token
+export const UserRooms = (state:RootState) => state.user.userRooms
 
 export default userSlice
